@@ -5,6 +5,11 @@
  */
 package com.vn.introjava;
 
+import com.vn.introjava.poo.Coche;
+import com.vn.introjava.poo.FabricaCoches;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Clase principal del proyecto Ejemplos java
  *
@@ -23,5 +28,13 @@ public class Main {
 //        EstructurasControl.ejecutarCondiciones();
 //        DatosBasicos.probarOperadores();
 //        Ordenamiento.ordenarArray();
+        try {
+            Coche c = FabricaCoches.crear("Seat en main");
+            c.mostrarEstado();
+            c = FabricaCoches.crear(null);
+            c.mostrarEstado();
+        } catch (Exception ex) {
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
