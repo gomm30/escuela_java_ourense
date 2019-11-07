@@ -95,8 +95,8 @@ public class Coche extends Vehiculo {
     }
     
     @Override
-    public void mostrarEstado() {
-        System.out.println(tipo.toString().charAt(0) + tipo.toString().substring(1).toLowerCase() 
+    public String toString() {
+        return (tipo.toString().charAt(0) + tipo.toString().substring(1).toLowerCase() 
                 + " " + getMarca()
                 + (arrancado ? " ha arrancado."
                         : " apagado."));

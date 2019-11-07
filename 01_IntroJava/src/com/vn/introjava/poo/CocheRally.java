@@ -74,14 +74,11 @@ public class CocheRally extends Coche {
         return arrancado;
     }
 
-    // Ejercicio: Sobreescribir el método mostrarEstado para que
-    // también muestre el rozamiento.
-    // 2do, que indique que es un  "Coche de rally: <marca>, rozamiento, arrancado"
     @Override
-    public void mostrarEstado() {
-        super.mostrarEstado();
-        System.out.println("Rozamiento: " + getRozamiento());
+    public String toString() {
+        return super.toString() + "\nRozamiento: " + getRozamiento();
     }
+    
 
 //    @Override
 //    public void mostrarEstado() {;
