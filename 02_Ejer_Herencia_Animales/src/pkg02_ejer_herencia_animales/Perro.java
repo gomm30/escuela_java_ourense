@@ -38,4 +38,9 @@ public class Perro extends Animal {
     public String toString() {
         return super.toString() + "\nTipo: perro\nRaza: " + raza;
     }
+
+    @Override
+    public void alimentarAnimal(String alimento) {
+        System.out.println("NO PUEDES ALIMENTAR AL PERRO!!");
+    }
 }

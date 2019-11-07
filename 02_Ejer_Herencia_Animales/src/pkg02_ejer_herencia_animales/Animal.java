@@ -51,9 +51,9 @@ public abstract class Animal {
     
     /*Métodos propios*/
     
-    public void alimentarAnimal(String alimento){
-        System.out.println(getNombre() + " mastica y come " + alimento);
-    }
+    public abstract void alimentarAnimal(String alimento);
+       
+    
     
     public abstract void desplazar();
 
