@@ -9,7 +9,7 @@ package pkg02_ejer_herencia_animales;
  *
  * @author pc
  */
-public class Animal {
+public abstract class Animal {
     /*Variables*/
     protected String nombre;	
     protected int edad;
@@ -59,7 +59,7 @@ public class Animal {
 
     @Override
     public String toString() {
-        return "Animal{" + "nombre=" + nombre + ", edad=" + edad + ", peso=" + peso + ", habitat=" + habitat + '}';
+        return "Animal\n" + "nombre=" + nombre + "\nedad=" + edad + "\npeso=" + peso + "\nhabitat=" + habitat + '}';
     }
     
     public static void mostrarAnimal(Animal animal){
