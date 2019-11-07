@@ -23,10 +23,10 @@ public class Tractor extends Vehiculo {
     public void avanzar() {
         System.out.println("Ruedo y siego.");
     }
-
+    
     @Override
-    public void mostrarEstado() {
-        System.out.println(tipo.toString().charAt(0) + tipo.toString().substring(1).toLowerCase() 
+    public String toString() {
+        return (tipo.toString().charAt(0) + tipo.toString().substring(1).toLowerCase() 
                 + " . Los tractores no tenemos datos :("
         );
     }

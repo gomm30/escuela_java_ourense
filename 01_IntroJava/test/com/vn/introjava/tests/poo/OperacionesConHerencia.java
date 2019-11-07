@@ -91,10 +91,10 @@ public class OperacionesConHerencia {
         };
         for (Vehiculo v : misVehiculos) {
             System.out.println("");
-            v.mostrarEstado();
+            //v.mostrarEstado();
+            System.out.println(v.toString());
             v.avanzar();
-            System.out.println("");
-            
+            System.out.println(""); 
         }
     }
 }
