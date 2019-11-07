@@ -55,6 +55,13 @@ public class Animal {
         System.out.println(getNombre() + " mastica y come " + alimento);
     }
     
+    public abstract void desplazar();
+
+    @Override
+    public String toString() {
+        return "Animal{" + "nombre=" + nombre + ", edad=" + edad + ", peso=" + peso + ", habitat=" + habitat + '}';
+    }
+    
     
     
 }
