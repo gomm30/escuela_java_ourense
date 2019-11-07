@@ -62,6 +62,10 @@ public class Animal {
         return "Animal{" + "nombre=" + nombre + ", edad=" + edad + ", peso=" + peso + ", habitat=" + habitat + '}';
     }
     
+    public static void mostrarAnimal(Animal animal){
+        System.out.println(animal.toString());
+    }
+    
     
     
 }
