@@ -1,21 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pkg02_ejer_herencia_animales;
 
-/**
+/** Clase Perro
  *
- * @author pc
+ * @author Equipo4
  */
 public class Perro extends Animal {
 
     private String raza;
 
-    public Perro(String nombre, int edad, float peso) {
+    public Perro(String nombre, int edad, float peso, String raza) {
         super(nombre, edad, peso);
         habitat = habitat.TERRESTRE;
+        this.raza = raza;
     }
 
     public String getRaza() {
@@ -30,6 +27,9 @@ public class Perro extends Animal {
         System.out.println(nombre + " dice guau, guau, guau!");
     }
 
+    /**
+     * Implementación del método desplazar en la clase Perro.
+     */
     @Override
     public void desplazar() {
         System.out.println(nombre + " corre contento.");
@@ -40,9 +40,4 @@ public class Perro extends Animal {
         return super.toString() + "\nTipo: perro\nRaza: " + raza;
     }
 
-    @Override
-    public boolean alimentarAnimal(String alimento) {
-        System.out.println("NO PUEDES ALIMENTAR AL PERRO!!");
-        return false;
-    }
 }

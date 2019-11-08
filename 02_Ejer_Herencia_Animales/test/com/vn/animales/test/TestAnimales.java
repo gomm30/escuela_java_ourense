@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.vn.animales.test;
 
 import org.junit.Before;
@@ -10,13 +6,12 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import pkg02_ejer_herencia_animales.Animal;
-import pkg02_ejer_herencia_animales.Habitat;
 import pkg02_ejer_herencia_animales.Percebe;
 import pkg02_ejer_herencia_animales.Perro;
 
 /**
  *
- * @author pc
+ * @author Equipo4
  */
 public class TestAnimales {
 
@@ -35,7 +30,7 @@ public class TestAnimales {
     public void testPerro() {
         System.out.println("\n***PROBANDO PERRO***");
 
-        Perro toby = new Perro("Toby", 3, 5.3f);
+        Perro toby = new Perro("Toby", 3, 5.3f, "Caniche");
         String raza = "Mastin";
         toby.setRaza(raza);
         // Probar setRaza y getRaza
@@ -45,7 +40,8 @@ public class TestAnimales {
         // Probar desplazar()
         toby.desplazar();
         // Probar alimentarAnimal()
-        assertFalse(toby.alimentarAnimal("pienso"));
+        //**Comprobar
+        assertTrue(toby.alimentarAnimal("pienso"));
         // Probar toString()
         System.out.println("Método toString:\n" + toby.toString());
         // Probar set/get nombre
