@@ -10,11 +10,17 @@ package pkg02_ejer_herencia_animales;
  * @author pc
  */
 public class Percebe extends Animal{
+    
+    public Percebe(String nombre, int edad, float peso) {
+        super(nombre, edad, peso);
+        habitat = habitat.ACUATICO;
+    }
 
     @Override
-    public void alimentarAnimal(String alimento) {
+    public boolean alimentarAnimal(String alimento) {
         System.out.println(nombre + " se nutre de " + alimento );
         setPeso(getPeso()+1);
+        return true;
     }
 
     @Override
@@ -27,5 +33,4 @@ public class Percebe extends Animal{
         return super.toString() + "\nTipo: Percebe ";
     }
   
-    
 }

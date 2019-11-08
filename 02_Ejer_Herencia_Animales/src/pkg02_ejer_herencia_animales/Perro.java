@@ -13,8 +13,9 @@ public class Perro extends Animal {
 
     private String raza;
 
-    public Perro() {
-        super();
+    public Perro(String nombre, int edad, float peso) {
+        super(nombre, edad, peso);
+        habitat = habitat.TERRESTRE;
     }
 
     public String getRaza() {
@@ -40,7 +41,8 @@ public class Perro extends Animal {
     }
 
     @Override
-    public void alimentarAnimal(String alimento) {
+    public boolean alimentarAnimal(String alimento) {
         System.out.println("NO PUEDES ALIMENTAR AL PERRO!!");
+        return false;
     }
 }
