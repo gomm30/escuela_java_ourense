@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.vn.introjava.poo;
+package com.vn.introjava.poo.vehiculos;
 
 /**
  *
@@ -14,7 +14,7 @@ public class Coche extends Vehiculo {
     private String marca;
     private int numRuedas = 4;
     protected boolean arrancado;
-
+    
     // En el momento que creamos un constructor, el de por defecto deja de ser implementado por java.
     public Coche() { // Constructor por defecto
         numRuedas = 4;
@@ -92,6 +92,12 @@ public class Coche extends Vehiculo {
     @Override
     public void avanzar() {
         System.out.println("Ruedo un poco.");
+    }
+    
+    @Override
+    public void mover(float m){
+        avanzar();
+        System.out.println(m + " metros");
     }
     
     @Override
