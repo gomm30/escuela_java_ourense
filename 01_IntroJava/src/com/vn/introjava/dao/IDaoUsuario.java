@@ -24,5 +24,5 @@ public interface IDaoUsuario extends IGenericDao<Usuario> {
     
     public Usuario obtenerPorEdad(int edad);
     
-    void modificar(int index, Usuario usuarioExistente) throws Exception;
+    Usuario modificar(int index, Usuario usuarioExistente) throws Exception;
 }

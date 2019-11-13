@@ -13,10 +13,10 @@ import com.vn.introjava.poo.vehiculos.Coche;
  */
 public interface IDaoCoche extends IGenericDao<Coche> {
 
-    public void crear(String marca) throws Exception ;
+    public Coche crear(String marca) throws Exception ;
     
     public Coche obtenerPorMarca(String marca);
     
-    void modificar(int index, Coche cocheExistente) throws Exception;
+    Coche modificar(int index, Coche cocheExistente) throws Exception;
     
 }

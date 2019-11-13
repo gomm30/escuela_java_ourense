@@ -107,4 +107,16 @@ public class Coche extends Vehiculo {
                 + (arrancado ? " ha arrancado."
                         : " apagado."));
     }
+
+    @Override
+    public boolean equals(Object otroCoche) {
+        if(otroCoche instanceof Coche){
+            Coche c = (Coche)otroCoche;
+            if(this.getMarca().equals(c.getMarca())){
+                return true;
+            }
+        }
+        return false;
+    }
+  
 }

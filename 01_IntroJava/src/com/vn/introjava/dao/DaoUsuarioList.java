@@ -24,18 +24,23 @@ public class DaoUsuarioList implements IDaoUsuario {
     
     
     @Override
-    public void crear(Usuario nuevoUsuario) throws Exception {
+    public Usuario crear(Usuario nuevoUsuario) throws Exception {
         listaUsuarios.add(nuevoUsuario);
+        return nuevoUsuario;
     }
     
-    public void crear(String nombre, int edad) throws Exception {
-        listaUsuarios.add(new Usuario(nombre,edad));
+    public Usuario crear(String nombre, int edad) throws Exception {
+        return crear(new Usuario(nombre,edad));
     }
     
 
     @Override
     public Usuario obtenerPorIndice(int index) {
-        return listaUsuarios.get(index);
+        if(index < listaUsuarios.size()){
+            return listaUsuarios.get(index);
+        }else{
+            return null;
+        }  
     }
 
     @Override
@@ -59,12 +64,26 @@ public class DaoUsuarioList implements IDaoUsuario {
     }
     
     @Override
-    public void modificar(int index, Usuario usuarioExistente) throws Exception{
+    public Usuario modificar(int index, Usuario usuarioExistente) throws Exception{
         Usuario usuarioAmodificar = listaUsuarios.get(index);
         usuarioAmodificar.setNombre(usuarioExistente.getNombre());
         usuarioAmodificar.setEdad(usuarioExistente.getEdad());
         // Esto substituiría un objeto por otro, no modificaría los datos.
         //listaUsuarios.set(index, usuarioExistente);
+        return usuarioAmodificar;
     }
+
+    @Override
+    public void eliminar(int index) {
+        this.listaUsuarios.remove(index);
+        //eliminar(obtenerPorIndice(index)); // OK Tambien, en este caso es más lento
+    }
+
+    @Override
+    public void eliminar(Usuario usuExistente) {
+        this.listaUsuarios.remove(usuExistente);
+    }
+    
+    
     
 }
