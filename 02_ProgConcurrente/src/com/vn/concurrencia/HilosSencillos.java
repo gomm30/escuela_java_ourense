@@ -24,7 +24,7 @@ public class HilosSencillos {
 
         @Override
         public void run() {
-            for (int i = 0; i < 5000; i++) {
+            for (int i = 0; i < 5; i++) {
                 contCompartido++;
                 System.out.println("Instrucción A:    " + i
                         + " - contador = " + contCompartido);
@@ -37,7 +37,7 @@ public class HilosSencillos {
         @Override
         public void run() {
             // El contador principal, j, en variable local
-            for (int j = 0; j < 8000; j++) {
+            for (int j = 0; j < 8; j++) {
                 contCompartido++;
                 System.out.println("->Ins B:" + j
                         + ", c=" + contCompartido);
@@ -67,5 +67,20 @@ public class HilosSencillos {
         threadHiloB.run();
 
         System.out.println("\n----- END - RUN -----\n");
+    }
+    
+    public void ejecutarArrayHilosStartABenParalelo(int num_hilos){
+        System.out.println("\n***** THREADS : " + num_hilos + " - START *****\n");
+        
+        Thread[] arrayHilos = new Thread[num_hilos];
+        
+        for (int i = 0; i < arrayHilos.length; i++) {
+           arrayHilos[i] =  new Thread(hiloA);
+           arrayHilos[i].start();
+        }
+        
+        while(arrayHilos[arrayHilos.length-1].isAlive());
+
+        System.out.println("\n----- END - START -----\n");
     }
 }
