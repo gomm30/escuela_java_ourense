@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Estructura típica HTML5</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <!-- Suele ser la cabecera -->
+            <img src="images/logo_pelota.jpg" style="width: 100px; height: 100px;" alt="Logo pelota">
+            <h1>Título de la web</h1>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <a class="navbar-brand" href="#">Ejercicio CSS</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link" href="01_estructura_html5.html">Estructura HTML5</a>
+                        <a class="nav-item nav-link" href="02_ejemplo_css3.html">Ejemplo CSS3</a>
+                        <a class="nav-item nav-link" href="03_formularios.html">Formularios</a>
+                        <a class="nav-item nav-link active" href="04_bootstrap.html">Bootstrap</a>
+                        <a class="nav-item nav-link" href="05_ejemplos_js.html">Ejemplo JS</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <nav>Otro menú</nav>
+        <section class="row">
+            <!-- Los encabezados no se debe usar para el estilo, si no por el contenido -->
+            <h2 class="col-12">Encabezado nivel 2, como título secundario</h2>
+            <h3 class="col-12">Encabezado nivel 3, otros títulos</h3>
+            <article class="col col-lg-4">
+                <h3>Maquetados con media-queries CSS</h3>
+                <h4>Aquí iría un artículo</h4>
+                Con el texto que sea bla bla bla...
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum unde nobis accusamus perferendis!
+                Esse, corrupti, rem commodi consequatur ipsum in unde dicta assumenda, sit dolor totam nulla aliquam
+                officia impedit.
+            </article>
+            <article class="col col-lg-4">
+                <h4>Aquí iría otro artículo</h4>
+                Con el texto que sea bla bla bla...
+                <section>Una parte del artículo</section>
+                <section>Otra parte del artículo</section>
+                <video src="images/video.mp4" controls="true"></video>
+            </article>
+            <article class="col col-lg-4">
+                <h4>Aquí iría otro artículo</h4>
+                Con el texto que sea bla bla bla...
+                <section>Una parte del artículo</section>
+                <section>Otra parte del artículo</section>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit quod nobis enim cumque quisquam
+                deserunt
+                a omnis laborum, cum excepturi minima amet eaque voluptatum ducimus iste ratione commodi debitis
+                harum.
+            </article>
+            <table class="table table-hover table-bordered text-center table-sm">
+                <thead class="thead-dark">
+                    <tr>
+                        <!-- TR para cada una de las filas -->
+                        <th>Nombre</th> <!-- TH para las cabeceras de las columnas -->
+                        <th>Apellidos</th>
+                        <th>Edad</th>
+                        <th>Contacto</th>
+                    </tr>
+                </thead>
+                <tbody class="thead-light">
+                    <tr>
+                        <td>Ana</td> <!-- TD para cada una de las celdas de las columnas -->
+                        <td>Pérez</td>
+                        <td>40</td>
+                        <td><a href="mailto://ana.perez@vn.com">Enviar email</a></td>
+                    </tr>
+                    <tr>
+                        <td>Juan</td> <!-- TD para cada una de las celdas de las columnas -->
+                        <td>Gómez</td>
+                        <td>41</td>
+                        <td><a href="tel:/91 000 11 22">Llamar por teléfono</a></td>
+                    </tr>
+                    <tr>
+                        <td>Ana</td> <!-- TD para cada una de las celdas de las columnas -->
+                        <td>Pérez</td>
+                        <td>40</td>
+                        <td><a href="mailto://ana.perez@vn.com">Enviar email</a></td>
+                    </tr>
+                    <tr>
+                        <td>Juan</td> <!-- TD para cada una de las celdas de las columnas -->
+                        <td>Gómez</td>
+                        <td>41</td>
+                        <td><a href="tel:/91 000 11 22">Llamar por teléfono</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <aside>
+            <p>Típico submenú con enlaces de interés</p>
+            <ul>
+                <li><a href="https://www.w3schools.com/">www.w3schools.com</a></li>
+                <li><a href="https://www.mozilla.org/es/">www.mozilla.org</a></li>
+            </ul>
+        </aside>
+        <footer>
+            Tarta de página
+            <nav>
+                <ul>
+                    <li>Enlaces a RR.SS.</li>
+                </ul>
+            </nav>
+            <address>Avenida de Buenos Aires, 40. tu ru ru</address>
+        </footer>
+    </div>
+</body>
+
+</html>
