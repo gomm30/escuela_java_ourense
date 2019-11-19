@@ -26,7 +26,7 @@ public class Main {
         });
         arrayEnTabla(arrayRestaAB);
 
-        Double[] arrayMultiplicaAB = OperarArrays.operarArrays(array_A, array_B, Main::multiplica);
+        Object[] arrayMultiplicaAB = OperarArrays.operarArrays(array_A, array_B, Main::multiplica);
         arrayEnTabla(arrayMultiplicaAB);
 
         FunCallbackOperarArrays divide = (Object x, Object y) -> {
@@ -63,7 +63,7 @@ public class Main {
         return (Double)x + (Double)y;
     }
 
-    public static Object multiplica(Double x, Double y) {
+    public static Object multiplica(Object x, Object y) {
         return (Double)x * (Double)y;
     }
 
