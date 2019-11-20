@@ -41,18 +41,18 @@
                 this.input = input;
                 this.btn = btn;
                 this.div = div;
-                this.btn.addEventListener("click", this.funCallbkAlPulsar());
-                this.btn.addEventListener("click", this.funCallbkAlPulsar_Dos());
+                this.funCallbkAlPulsarBIND = this.funCallbkAlPulsar.bind(this);
+                this.btn.addEventListener("click", this.funCallbkAlPulsarBIND);
+                this.btn.addEventListener("click", this.funCallbkAlPulsar_Dos);
             }
 
             funCallbkAlPulsar(evento) {
-                console.log(this.funCallbkAlPulsar.event);
                 let mensaje = "Muy bien listillo, sabes pulsar";
                 this.input.value = mensaje;
                 evento.currentTarget.value = "Puedes repetir";
                 let info_evento = document.getElementById(evento.currentTarget.id);
                 this.div.innerHTML += "evento.currentTarget.id: " + evento.currentTarget.id;
-                evento.currentTarget.removeEventListener("click", this.funCallbkAlPulsar);
+                evento.currentTarget.removeEventListener("click", this.funCallbkAlPulsarBIND);
             }
 
             funCallbkAlPulsar_Dos() {
@@ -85,13 +85,6 @@
         //     }
         // }
 
-        // let input_listo = document.getElementById("input_listo");
-        // let btn_listo = document.getElementById("btn_listo");
-        // let input_otro = document.getElementById("input_otro");
-        // let btn_otro = document.getElementById("btn_otro");
-
-        // btn_listo.value = "Pulsa, listillo/a";
-        // btn_otro.value = "Pulsa, listillo/a";
 
         // Forma estándar de definir un evento.
         // btn_listo.addEventListener("click", funCallbkAlPulsar);
