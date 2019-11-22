@@ -3,11 +3,15 @@ package com.vn.modelousuarios.dao;
 
 /** 
  *
- * @author pc
+ * @author grupo 4
  */
 public interface IGenericDao<T> {
     
-    T obtenerTodos();
+    T leerTodos();
     
-    T obtenerPorIndice(int index);
+    T leerUno(int index);
+    
+    T leerUno(String cadena);
+    
+    T crearNuevo(T nuevo);
 }
