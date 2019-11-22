@@ -1,0 +1,15 @@
+06_ModeloUsuariosBBDD
+
+db_usuarios;
+
+DROP TABLE usuario;
+
+CREATE TABLE usuario(
+	id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY(START WITH 1, INCREMENT BY 1),
+	email VARCHAR(255) NOT NULL,
+	password VARCHAR(255) NOT NULL,
+	nombre VARCHAR(50) NOT NULL,
+	age INTEGER NOT NULL,
+	CONSTRAINT primary_key PRIMARY KEY(id),
+	CONSTRAINT unique_email PRIMARY KEY(email),
+)
