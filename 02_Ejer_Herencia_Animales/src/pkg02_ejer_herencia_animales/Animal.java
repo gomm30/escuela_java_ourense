@@ -1,18 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkg02_ejer_herencia_animales;
 
-/**
+/** Clase Animal 
  *
- * @author pc
+ * @author Equipo4
  */
 public abstract class Animal {
-    /*Variables*/
-    protected String nombre;	
+
+    protected String nombre;
     protected int edad;
+<<<<<<< HEAD
     protected float peso;
     protected Habitat habitat = Habitat.NO_DEFINIDO;
     
@@ -20,7 +16,25 @@ public abstract class Animal {
     public Animal(String nombre, int edad){
         this.nombre = nombre;
         this.edad = edad;
+=======
+    /**
+     * Peso float en kg con precisión en gramos
+     */
+    protected float peso;
+    /**
+     * Habitat del animal de tipo enum Habitat
+     */
+    protected Habitat habitat;
+
+
+    public Animal(String nombre, int edad, float peso) {
+        this.nombre = nombre;
+        this.edad = edad;
+        this.peso = peso;
+        habitat = habitat.NO_DEFINIDO;
+>>>>>>> 3258733063cd7a8e0673c93498b9522c45cc7f84
     }
+
     /*Getters y Setters*/
     public String getNombre() {
         return nombre;
@@ -49,22 +63,37 @@ public abstract class Animal {
     public Habitat getHabitat() {
         return habitat;
     }
+<<<<<<< HEAD
     
     /*Métodos propios*/
     
     public abstract void alimentarAnimal(String alimento);
     
+=======
+
+    /**
+     * Método para alimentar el animal
+     * @param alimento con el que se alimenta el animal
+     * @return 
+     */
+    public boolean alimentarAnimal(String alimento) {
+        System.out.println(nombre + " mastica y come " + alimento);
+        return true;
+    }
+
+    /**
+     * Método abstracto para indicar que el animal se desplaza
+     */
+>>>>>>> 3258733063cd7a8e0673c93498b9522c45cc7f84
     public abstract void desplazar();
+
+    public static void mostrarAnimal(Animal animal) {
+        System.out.println(animal.toString());
+    }
 
     @Override
     public String toString() {
         return "Animal\n" + "nombre=" + nombre + "\nedad=" + edad + "\npeso=" + peso + "\nhabitat=" + habitat + '}';
     }
-    
-    public static void mostrarAnimal(Animal animal){
-        System.out.println(animal.toString());
-    }
-    
-    
-    
+
 }

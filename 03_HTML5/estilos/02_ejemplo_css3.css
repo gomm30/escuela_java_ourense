@@ -1,0 +1,69 @@
+/*selector { propiedad_1 = ...; propiedad_2 = ...;}*/
+*{
+    margin: 0px;
+    padding: 0px;
+}
+/* Selector de etiqueta */
+body{
+    background-color: #DDEEFF; /* RGB */
+    font-size: 1.2em; /* Propiedad que se hereda de padres a hijos */
+}
+header{
+    background-color: rgb(182, 202, 221);
+}
+h1, h2, h3, h4, h5, h6{
+    background-color: rgb(166, 201, 236);
+}
+ul{
+    margin: 20px;
+    background-color: rgb(188, 220, 253);
+}
+/*Section descendiente de article [hijo, nieto o lo que sea]*/
+article section{
+    margin: 20px;
+    background-color: red;
+}
+/*Section hijo directo de article*/
+article>section{
+    margin: 20px;
+    background-color: greenyellow;
+}
+/* clase azul chillón */
+.azul-chillon{
+    background-color: hotpink;
+}
+/* Selector de id */
+#enlace-menu, #enlace-css{
+    color: red;
+}
+li:hover{
+    height: 30px;
+}
+.elemento-menu{
+    display: inline;
+}
+.titulo{
+    position: relative;
+    left: 5px;
+    top: 5px;
+    /* display: inline-block; */
+}
+/* .marco-colocado{
+    display: inline-block;
+    width: 500px;
+} */
+.articulo {
+    border: black solid;
+}
+.enlace-articulo{
+    padding: 1em;
+    display: inline-block;
+}
+
+@media screen and (max-width: 992px) {
+    article section {
+        width: 40%;
+        display: inline-block;
+        border: burlywood solid;
+    }
+}

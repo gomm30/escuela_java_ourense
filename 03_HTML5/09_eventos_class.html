@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .divsTraviesos{
+            text-align: center;
+            padding: 1em;
+            margin: 1em 0;
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Mejor los controles en un DIV -->
+    <div id="componente_eventos" class="contenedores">
+        <label for="input_listo">Evento con listener</label>
+        <input type="text" id="input_listo" size="100" />
+        <input type="button" id="btn_listo" value="Púlsame" />
+        <div id="info_evento"></div>
+    </div>
+
+    <!-- Por separado también debe funcionar -->
+    <label for="input_otro">Otros eventos con listener:</label>
+    <input type="text" id="input_otro" size="100" />
+    <input type="button" id="btn_otro" value="Pulsa este otro" />
+    <div id="info_evento_otro"></div>
+
+    <div class="divsTraviesos" onclick="alert('Llamada evento desde HTML');">Zona onclick="alert();"</div>
+    <div class="divsTraviesos" id="quiereUnOnclick">
+        Zona elemDom.onclick = function(..){ ... }
+    </div>
+
+    <script src="js/09_eventos_class.js"></script>
+    <script>
+        // Similar al evento de jquery con document.ready
+        window.addEventListener("load", function () {
+            // let gestorEv = new GestorEventosES5("input_listo", "btn_listo", "info_evento");
+            // let gestorEvOtro = new GestorEventosES5("input_otro", "btn_otro", "info_evento_otro");
+
+            let gestorEv = new GestorEventosES6("input_listo", "btn_listo", "info_evento");
+            let gestorEvOtro = new GestorEventosES6("input_otro", "btn_otro", "info_evento_otro");
+
+            let quiereUnOnclick = document.getElementById("quiereUnOnclick");
+            quiereUnOnclick.onclick = function(evento){
+                alert("Llamada evento desde JS, propiedad onclick");
+            }
+        });
+    </script>
+
+</body>
+
+</html>

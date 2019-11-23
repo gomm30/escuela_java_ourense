@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eventos</title>
+</head>
+
+<body>
+    <div class="contenedores">
+        <label for="input_listo">Evento con listener</label>
+        <input type="text" id="input_listo" />
+        <input type="button" id="btn_listo" />
+        <div id="info_evento"></div>
+    </div>
+    <div class="contenedores">
+        <label for="input_otro">Otros eventos con listener:</label>
+        <input type="text" id="input_otro" />
+        <input type="button" id="btn_otro" />
+        <div id="info_evento_otro"></div>
+    </div>
+
+    <script>
+
+        let input_listo = document.getElementById("input_listo");
+        let btn_listo = document.getElementById("btn_listo");
+        let info_evento = document.getElementById("info_evento");
+
+        let input_otro = document.getElementById("input_otro");
+        let btn_otro = document.getElementById("btn_otro");
+        let info_evento_otro = document.getElementById("info_evento_otro");
+
+        btn_listo.value = "Pulsa, listillo/a";
+        btn_otro.value = "Pulsa, listillo/a";
+
+        class GestorEv {
+
+            constructor(input, btn, div) {
+                this.input = input;
+                this.btn = btn;
+                this.div = div;
+                this.funCallbkAlPulsarBIND = this.funCallbkAlPulsar.bind(this);
+                this.btn.addEventListener("click", this.funCallbkAlPulsarBIND);
+                this.btn.addEventListener("click", this.funCallbkAlPulsar_Dos);
+            }
+
+            funCallbkAlPulsar(evento) {
+                let mensaje = "Muy bien listillo, sabes pulsar";
+                this.input.value = mensaje;
+                evento.currentTarget.value = "Puedes repetir";
+                let info_evento = document.getElementById(evento.currentTarget.id);
+                this.div.innerHTML += "evento.currentTarget.id: " + evento.currentTarget.id;
+                evento.currentTarget.removeEventListener("click", this.funCallbkAlPulsarBIND);
+            }
+
+            funCallbkAlPulsar_Dos() {
+                document.getElementsByTagName("body")[0].className = "fondo-body";
+            }
+
+        }
+
+        Ev1 = new GestorEv(input_listo, btn_listo, info_evento);
+        Ev2 = new GestorEv(input_otro, btn_otro, info_evento_otro);
+
+        // function GestorEv(input, btn, div) {
+        //     this.input = input;
+        //     this.btn = btn;
+        //     this.div = div;
+
+        //     btn.addEventListener("click", this.funCallbkAlPulsar);
+        //     btn.addEventListener("click", this.funCallbkAlPulsar_Dos);
+
+        //     this.funCallbkAlPulsar = (evento) => {
+        //         let mensaje = "Muy bien listillo, sabes pulsar";
+        //         this.input.value = mensaje;
+        //         evento.currentTarget.value = "Puedes repetir";
+        //         let info_evento = document.getElementById(evento.currentTarget.id);
+        //         this.div.innerHTML += "evento.currentTarget.id: " + evento.currentTarget.id;
+        //         evento.currentTarget.removeEventListener("click", this.funCallbkAlPulsar);
+        //     }
+        //     this.funCallbkAlPulsar_Dos = (evento) => {
+        //         document.getElementsByTagName("body")[0].className = "fondo-body";
+        //     }
+        // }
+
+
+        // Forma estándar de definir un evento.
+        // btn_listo.addEventListener("click", funCallbkAlPulsar);
+        // btn_listo.addEventListener("click", funCallbkAlPulsar_Dos);
+        // btn_otro.addEventListener("click", funCallbkAlPulsar);
+        // btn_otro.addEventListener("click", funCallbkAlPulsar_Dos);
+
+        // function funCallbkAlPulsar(evento) {
+        //     let mensaje = "Muy bien listillo, sabes pulsar";
+        //     if (evento.currentTarget.id == "btn_listo") {
+        //         input_listo.value = mensaje;
+        //     } else if (evento.currentTarget.id == "btn_otro") {
+        //         input_otro.value = mensaje;
+        //     }
+        //     //evento.currentTarget.value = "Muy bien listillo, sabes pulsar";
+        //     //let info_evento = document.getElementById(evento.currentTarget.id);
+        //     evento.currentTarget.value = "Puedes repetir";
+        //     //info_evento.innerHTML += "evento.currentTarget.id: " + evento.currentTarget.id;
+        //     //info_evento.style = "background-color: lightgrey;";
+
+        //     // Eliminar un evento
+        //     // Esta es la única manera de que un evento se ejecute una sola vez.
+        //     // De esta forma, el evento se elimina a si mismo sin fastidiar a los demás.
+        //     evento.currentTarget.removeEventListener("click", funCallbkAlPulsar);
+        // }
+
+        // function funCallbkAlPulsar_Dos(evento) {
+        //     document.getElementsByTagName("body")[0].className = "fondo-body";
+        // }
+
+
+    </script>
+    <style>
+        .fondo-body {
+            background-color: lightgreen;
+        }
+
+        .contenedores {
+            padding: 1em 0;
+        }
+    </style>
+</body>
+
+</html>
