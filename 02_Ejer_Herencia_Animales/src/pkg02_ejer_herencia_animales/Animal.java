@@ -13,12 +13,13 @@ public abstract class Animal {
     /*Variables*/
     protected String nombre;	
     protected int edad;
-    protected int peso;
-    protected Habitat habitat;
+    protected float peso;
+    protected Habitat habitat = Habitat.NO_DEFINIDO;
     
     /*Constructores*/
-    public Animal(){
-        
+    public Animal(String nombre, int edad){
+        this.nombre = nombre;
+        this.edad = edad;
     }
     /*Getters y Setters*/
     public String getNombre() {
@@ -37,11 +38,11 @@ public abstract class Animal {
         this.edad = edad;
     }
 
-    public int getPeso() {
+    public float getPeso() {
         return peso;
     }
 
-    public void setPeso(int peso) {
+    public void setPeso(float peso) {
         this.peso = peso;
     }
 
@@ -52,8 +53,6 @@ public abstract class Animal {
     /*Métodos propios*/
     
     public abstract void alimentarAnimal(String alimento);
-       
-    
     
     public abstract void desplazar();
 
