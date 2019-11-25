@@ -62,11 +62,14 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
             PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
             sentenciaSQL.setInt(1, id);
             ResultSet resultado = sentenciaSQL.executeQuery();
-            /* [1]-ID, [2]-EMAIL, [3]-PASSWORD, [4]-NOMBRE, [5]-AGE */
-            return new Usuario(
-                    resultado.getInt(1), resultado.getString(2),
-                    resultado.getString(3), resultado.getString(4),
-                    resultado.getInt(5));
+            while (resultado.next()) {
+                /* [1]-ID, [2]-EMAIL, [3]-PASSWORD, [4]-NOMBRE, [5]-AGE */
+                return new Usuario(
+                        resultado.getInt(1), resultado.getString(2),
+                        resultado.getString(3), resultado.getString(4),
+                        resultado.getInt(5)
+                );
+            }
         } catch (SQLException ex) {
             System.out.println("Error. " + ex.getMessage());
         }
@@ -80,11 +83,14 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
             PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
             sentenciaSQL.setString(1, email);
             ResultSet resultado = sentenciaSQL.executeQuery();
-            /* [1]-ID, [2]-EMAIL, [3]-PASSWORD, [4]-NOMBRE, [5]-AGE */
-            return new Usuario(
-                    resultado.getInt(1), resultado.getString(2),
-                    resultado.getString(3), resultado.getString(4),
-                    resultado.getInt(5));
+            while (resultado.next()) {
+                /* [1]-ID, [2]-EMAIL, [3]-PASSWORD, [4]-NOMBRE, [5]-AGE */
+                return new Usuario(
+                        resultado.getInt(1), resultado.getString(2),
+                        resultado.getString(3), resultado.getString(4),
+                        resultado.getInt(5)
+                );
+            }
         } catch (SQLException ex) {
             System.out.println("Error. " + ex.getMessage());
         }

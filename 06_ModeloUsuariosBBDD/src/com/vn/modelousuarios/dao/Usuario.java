@@ -21,7 +21,7 @@ public class Usuario {
 
     private int age;
 
-    public Usuario(int id, String nombre, String email, String password, int age) {
+    public Usuario(int id, String email, String password, String nombre, int age) {
         this.id = id;
         this.nombre = nombre;
         this.email = email;
@@ -29,7 +29,7 @@ public class Usuario {
         this.age = age;
     }
 
-    public Usuario(String nombre, String email, String password, int age) {
+    public Usuario( String email, String password, String nombre, int age) {
         this.nombre = nombre;
         this.email = email;
         this.password = password;
