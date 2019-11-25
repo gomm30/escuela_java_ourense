@@ -36,12 +36,28 @@ public class ServiciosUsuarios {
         }
     }
 
-    public Usuario modificar(int Id, String email, String password, String nombre, int edad) {
-        return null;
+    public Usuario modificar(int id, String email, String password, String nombre, int edad) {
+        if (this.dui.leerUno(id) != null) {
+            Usuario user = new Usuario(email, password, nombre, edad);
+            if (dui.actualizar(id, user)) {
+                user.setId(id);
+                return user;
+            } else {
+                System.out.println("No se ha podido actualizar el usuario.");
+                return null;
+            }
+        } else {
+            System.out.println("El usuario que intenta modificar no existe.");
+            return null;
+        }
     }
 
     public Usuario modificar(Usuario usuDatosNuevos) {
-        /*Invocar al anterior*/ return null;
+        return this.modificar(usuDatosNuevos.getId(),
+                usuDatosNuevos.getEmail(),
+                usuDatosNuevos.getPassword(),
+                usuDatosNuevos.getNombre(),
+                usuDatosNuevos.getAge());
     }
 
     public boolean eliminar(int id) {
