@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  *
  * @author grupo-4
  */
-public class DaoUsuarioImp implements IDaoUsuario {
+public class DaoUsuarioImp implements IGenericDao<Usuario> {
 
     static final String DB = "jdbc:derby://localhost:1527/db_usuarios";
     static final String DB_USUARIO = "root";
@@ -164,4 +164,5 @@ public class DaoUsuarioImp implements IDaoUsuario {
         }
         return false;
     }
+
 }
