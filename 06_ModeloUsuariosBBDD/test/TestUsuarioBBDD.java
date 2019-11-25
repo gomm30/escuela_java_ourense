@@ -16,7 +16,10 @@ import static org.junit.Assert.*;
  */
 public class TestUsuarioBBDD {
     
+    private ServiciosUsuarios srvUsu;
+
     public TestUsuarioBBDD() {
+        srvUsu = new ServiciosUsuarios();
     }
 
 //     @Test
@@ -35,7 +38,6 @@ public class TestUsuarioBBDD {
 //         // Obtener usuario introduciendo email vacio
 //         assertNull(su.leerUno(""));
 //     }
-     
 //     @Test
 //     public void testLeerTodos() {
 //         ServiciosUsuarios su = new ServiciosUsuarios();
@@ -45,7 +47,6 @@ public class TestUsuarioBBDD {
 //         // Obtener todos los usuarios si la tabla está vacía.
 //         assertEquals(0,su.leerTodos().size());
 //     }
-    
 //    @Test
 //     public void testLeerTodosPorNombre() {
 //        ServiciosUsuarios su = new ServiciosUsuarios();
@@ -62,11 +63,10 @@ public class TestUsuarioBBDD {
 //        // Buscar un usuario por nombre cuando no existen usuarios
 //        assertEquals(0,su.leerPorNombre("manolo").size()); 
 //     }
-    
     @Test
-     public void testCrearUsuario() {
+    public void testCrearUsuario() {
         ServiciosUsuarios su = new ServiciosUsuarios();
-        
+
         // Comprobar que un usuario se crea correctamente y se puede obtener el nombre.
         //assertEquals("Yago",su.crear("yago@correo.com", "ant123", "Yago", 63).getNombre());
         // Comprobar que un usuario se crea correctamente y se puede obtener el email.
@@ -79,15 +79,53 @@ public class TestUsuarioBBDD {
         //assertEquals(12, su.crear("yaguito2@correo.com", "ant123", "Yago3", 67).getId());
         // Comprobar que no podemos crear un usuario con algún campo vacio
         //assertNull(su.crear("", "", "", 1));
-     }
-     
-     @Test
-     public void testActualizarUsuario() {
+    }
+
+    @Test
+    public void testActualizarUsuario() {
         ServiciosUsuarios su = new ServiciosUsuarios();
         // Actualizar un usuario que existe
         // Actualizar un usuario que NO existe
         // Actualizar un usuario que existe 
-     }
-     
-     
+    }
+
+    @Test
+    public void crearUsuariosInvalidos() {
+        Usuario u1 = srvUsu.crear(null, "", null, "");
+        Usuario u2 = srvUsu.crear("", "a1", "Nom", "");
+        Usuario u3 = srvUsu.crear("b@a.a", "a1", "", "");
+        Usuario u4 = srvUsu.crear("b@a.a", "1234", "Nom 2", "SIN EDAD");
+        Usuario u5 = srvUsu.crear("b@a.a", "1234", "Nom 2", "10");
+        assertNull(u1);
+        assertNull(u2);
+        assertNull(u3);
+        assertNull(u4);
+        assertNull(u5);
+        assertNull(srvUsu.leerUno("b@a.a"));
+    }
+
+    @Test
+    public void crearUsuariosValidos() {
+        srvUsu.crear("a@a.a", "1234", "Nom 1", "20");
+        srvUsu.crear("a@a.a2", "1234", "Nom 2", "30");
+        
+        assertTrue(srvUsu.leerUno("a@a.a").getId() > 0);
+        assertEquals("Nom 2", srvUsu.leerUno("a@a.a2").getNombre());
+        
+        srvUsu.eliminar(srvUsu.leerUno("a@a.a").getId());
+        srvUsu.eliminar(21);
+    }
+
+    @Test
+    public void actualizarUsuariosInvalidos() {
+    }
+
+    @Test
+    public void actualizarUsuariosValidos() {
+    }
+
+    @Test
+    public void eliminarUsuariosValidos() {
+    }
+
 }

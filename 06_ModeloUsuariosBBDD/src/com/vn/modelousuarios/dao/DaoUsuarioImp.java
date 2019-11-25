@@ -14,9 +14,9 @@ import java.util.ArrayList;
  */
 public class DaoUsuarioImp implements IGenericDao<Usuario> {
 
-    static final String DB = "jdbc:derby://localhost:1527/db_usuarios";
-    static final String DB_USUARIO = "root";
-    static final String DB_PASSWORD = "1234";
+    private static final String DB = "jdbc:derby://localhost:1527/db_usuarios";
+    private static final String DB_USUARIO = "root";
+    private static final String DB_PASSWORD = "1234";
 
     /** Constructor con creación del objeto conexión con la base de datos.
      * 
@@ -106,7 +106,7 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
             PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
             sentenciaSQL.setInt(1, id);
             ResultSet resultado = sentenciaSQL.executeQuery();
-            while (resultado.next()) {
+            if (resultado.next()) {
                 /* [1]-ID, [2]-EMAIL, [3]-PASSWORD, [4]-NOMBRE, [5]-AGE */
                 return new Usuario(
                         resultado.getInt(1), resultado.getString(2),
@@ -132,7 +132,7 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
             PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
             sentenciaSQL.setString(1, email);
             ResultSet resultado = sentenciaSQL.executeQuery();
-            while (resultado.next()) {
+            if (resultado.next()) {
                 /* [1]-ID, [2]-EMAIL, [3]-PASSWORD, [4]-NOMBRE, [5]-AGE */
                 return new Usuario(
                         resultado.getInt(1), resultado.getString(2),
