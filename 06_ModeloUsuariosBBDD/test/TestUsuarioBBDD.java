@@ -5,6 +5,8 @@
  */
 
 import com.vn.modelousuarios.dao.ServiciosUsuarios;
+import com.vn.modelousuarios.dao.Usuario;
+import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -44,24 +46,22 @@ public class TestUsuarioBBDD {
 //         assertEquals(0,su.leerTodos().size());
 //     }
     
-    @Test
-     public void testLeerTodosPorNombre() {
-        ServiciosUsuarios su = new ServiciosUsuarios();
-        
-        // Obtener un usuario con un nombre único
-        assertEquals(2,su.leerPorNombre("usuario1"));
-        // Obtener una lista de usuarios con el mismo nombre
-        assertEquals(2,su.leerPorNombre("usuario1"));
-        // Obtener una lista de todos los usuario al no pedir ningún nombre 
-        assertEquals(2,su.leerPorNombre("usuario1"));
-        // Buscar un usuario que no existe por nombre
-        assertEquals(2,su.leerPorNombre("usuario1"));
-        // Buscar un usuario por nombre cuando no existen usuarios
-        assertEquals(2,su.leerPorNombre("usuario1"));
-        
-        
-        
-     }
+//    @Test
+//     public void testLeerTodosPorNombre() {
+//        ServiciosUsuarios su = new ServiciosUsuarios();
+//        
+//        // Obtener un usuario con un nombre único
+//        assertEquals(1 ,su.leerPorNombre("pepe").size());
+//        assertEquals("pepe" ,su.leerPorNombre("pepe").get(0).getNombre());
+//        // Obtener una lista de usuarios con el mismo nombre
+//        assertEquals(2,su.leerPorNombre("usuario").size());
+//        // Obtener una lista de todos los usuario al no pedir ningún nombre 
+//        assertEquals(3,su.leerPorNombre("").size());
+//        // Buscar un usuario que no existe por nombre
+//        assertEquals(0,su.leerPorNombre("manolo").size());
+//        // Buscar un usuario por nombre cuando no existen usuarios
+//        assertEquals(0,su.leerPorNombre("manolo").size()); 
+//     }
      
      
 }
