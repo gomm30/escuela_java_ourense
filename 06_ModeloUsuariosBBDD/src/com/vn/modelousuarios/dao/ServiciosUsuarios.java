@@ -53,6 +53,7 @@ public class ServiciosUsuarios {
     }
 
     public List<Usuario> leerTodos() {
-        return null;
+        
+        return dui.leerTodos();
     }
 }
