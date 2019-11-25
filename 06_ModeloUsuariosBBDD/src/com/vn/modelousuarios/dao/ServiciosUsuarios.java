@@ -23,7 +23,17 @@ public class ServiciosUsuarios {
     }
 
     public Usuario crear(String email, String password, String nombre, int edad) {
-        return null;
+        if (this.dui.leerUno(email) == null) {
+            if (this.dui.crearNuevo(new Usuario(email, password, nombre, edad))) {
+                return this.dui.leerUno(email);
+            } else {
+                System.out.println("Error al intentar crear el usuario.");
+                return null;
+            }
+        } else {
+            System.out.println("Ya existe un usuario en la bbdd con este email.");
+            return null;
+        }
     }
 
     public Usuario modificar(int Id, String email, String password, String nombre, int edad) {
@@ -44,7 +54,6 @@ public class ServiciosUsuarios {
     }
 
     public Usuario leerUno(String email) {
-
         return dui.leerUno(email);
     }
 
