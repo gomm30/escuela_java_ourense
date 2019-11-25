@@ -56,6 +56,36 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
     }
 
     @Override
+    public ArrayList<Usuario> leerTodos(String nombre) {
+        ArrayList<Usuario> listaUsuarios = new ArrayList<>();
+        try (Connection con = DriverManager.getConnection(DB, DB_USUARIO, DB_PASSWORD)) {
+            String sqlQuery = "SELECT * FROM USUARIO WHERE TRIM(UPPER(nombre)) LIKE ?";
+            PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
+            
+            nombre= nombre.toUpperCase().trim();
+            nombre= nombre.replace("!","!!");
+            nombre= nombre.replace("%","!%");
+            nombre= nombre.replace("_","!_");
+            nombre= nombre.replace("[","![");
+            nombre= nombre.replace("!","!!");
+            sentenciaSQL.setString(1,"%" + nombre + "%"); // sustituir el primer ? por '(contenido del nombre)' 
+            ResultSet resultado= sentenciaSQL.executeQuery();
+            while (resultado.next()) {
+                /* [1]-ID, [2]-EMAIL, [3]-PASSWORD, [4]-NOMBRE, [5]-AGE */
+                listaUsuarios.add(new Usuario(
+                        resultado.getInt(1), resultado.getString(2),
+                        resultado.getString(3), resultado.getString(4),
+                        resultado.getInt(5)
+                ));
+            }
+            return listaUsuarios;
+        } catch (SQLException ex) {
+            System.out.println("Error. " + ex.getMessage());
+        }
+        return null;
+    }
+
+    @Override
     public Usuario leerUno(int id) {
         try (Connection con = DriverManager.getConnection(DB, DB_USUARIO, DB_PASSWORD)) {
             String sqlQuery = "SELECT * FROM USUARIO WHERE id = ?";
