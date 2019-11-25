@@ -78,8 +78,15 @@ public class TestUsuarioBBDD {
         // Comprobar que se puede crear un mismo usuario con distinto email.
         //assertEquals(12, su.crear("yaguito2@correo.com", "ant123", "Yago3", 67).getId());
         // Comprobar que no podemos crear un usuario con algún campo vacio
-        assertNull(su.crear("", "", "", 1));
-  
+        //assertNull(su.crear("", "", "", 1));
+     }
+     
+     @Test
+     public void testActualizarUsuario() {
+        ServiciosUsuarios su = new ServiciosUsuarios();
+        // Actualizar un usuario que existe
+        // Actualizar un usuario que NO existe
+        // Actualizar un usuario que existe 
      }
      
      

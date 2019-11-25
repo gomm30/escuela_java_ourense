@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.vn.modelousuarios.dao;
 
 import java.sql.Connection;
@@ -11,10 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-/**
+/** Clase DAO para creación de CRUD con objetos Usuario.
  *
  * @author grupo-4
  */
@@ -24,6 +18,9 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
     static final String DB_USUARIO = "root";
     static final String DB_PASSWORD = "1234";
 
+    /** Constructor con creación del objeto conexión con la base de datos.
+     * 
+     */
     public DaoUsuarioImp() {
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
@@ -33,6 +30,11 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
         }
     }
 
+    /** Implementación del método leerTodos
+     * que permite obtener todos los parámetros guardados en la base de datos.
+     * 
+     * @return Una lista con todos los usuarios guardados en la base de datos.
+     */
     @Override
     public ArrayList<Usuario> leerTodos() {
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
@@ -55,6 +57,13 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
         return null;
     }
 
+    /** Implementación del método leerTodos buscando
+     * los usuarios por nombre.
+     * Si el campo nombre está vacío devuelve todos los usuarios.
+     * 
+     * @param nombre del usuario a obtener.
+     * @return Lista con todos los usuarios con un determinado nombre.
+     */
     @Override
     public ArrayList<Usuario> leerTodos(String nombre) {
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
@@ -85,6 +94,11 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
         return null;
     }
 
+    /** Implementación del método leerUno dado un id
+     * 
+     * @param id del usuario a obtener.
+     * @return Usuario con el id dado o null si este no existe o existe algún error.
+     */
     @Override
     public Usuario leerUno(int id) {
         try (Connection con = DriverManager.getConnection(DB, DB_USUARIO, DB_PASSWORD)) {
@@ -106,6 +120,11 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
         return null;
     }
 
+    /** Implementación del método leerUno dado un email
+     * 
+     * @param email del usuario a obtener.
+     * @return Usuario con el EMAIL dado o null si este no existe o existe algún error.
+     */
     @Override
     public Usuario leerUno(String email) {
         try (Connection con = DriverManager.getConnection(DB, DB_USUARIO, DB_PASSWORD)) {
@@ -127,6 +146,12 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
         return null;
     }
 
+    /** Implementación del método crearNuevo 
+     * para crear un usuario nuevo.
+     * 
+     * @param usuario a crear
+     * @return boolean true si el usuario se ha creado correctamente o false si ha habido algún problema
+     */
     @Override
     public boolean crearNuevo(Usuario usuario) {
         try (Connection con = DriverManager.getConnection(DB, DB_USUARIO, DB_PASSWORD)) {
@@ -143,6 +168,13 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
         return false;
     }
 
+    /** Implementación del método actualizar
+     * para actualizar los datos de un usuario dado su id
+     * 
+     * @param id del usuario a actualizar
+     * @param usuarioActualizado con los datos del usuario actualizado
+     * @return null si el usuario no existe o ha surgido algún problema.
+     */
     @Override
     public boolean actualizar(int id, Usuario usuarioActualizado) {
         try (Connection con = DriverManager.getConnection(DB, DB_USUARIO, DB_PASSWORD)) {
@@ -159,6 +191,13 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
         return false;
     }
 
+    /** Implementación del método actualizar
+     * para actualizar los datos de un usuario dado su email
+     * 
+     * @param email del usuario a actualizar
+     * @return usuarioActualizado con los datos del usuario actualizado
+     * @return null si el usuario no existe o ha surgido algún problema.
+     */
     @Override
     public boolean actualizar(String email, Usuario usuarioActualizado) {
         try (Connection con = DriverManager.getConnection(DB, DB_USUARIO, DB_PASSWORD)) {
@@ -175,6 +214,12 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
         return false;
     }
 
+    /** Implementación del método eliminar
+     * para eliminar un usuario dado su id
+     * 
+     * @param id del usuario a eliminar
+     * @return true si el usuario se ha eliminado o false si el usuario no existe o ha surgido algún problema.
+     */
     @Override
     public boolean eliminar(int id) {
         try (Connection con = DriverManager.getConnection(DB, DB_USUARIO, DB_PASSWORD)) {

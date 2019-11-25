@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package com.vn.modelousuarios.dao;
 
 import java.util.List;
@@ -37,9 +33,9 @@ public class ServiciosUsuarios {
     }
 
     public Usuario modificar(int id, String email, String password, String nombre, int edad) {
-        if (this.dui.leerUno(id) != null) {
+        if (this.dui.leerUno(email) != null) {
             Usuario user = new Usuario(email, password, nombre, edad);
-            if (dui.actualizar(id, user)) {
+            if (dui.actualizar(email, user)) {
                 user.setId(id);
                 return user;
             } else {
