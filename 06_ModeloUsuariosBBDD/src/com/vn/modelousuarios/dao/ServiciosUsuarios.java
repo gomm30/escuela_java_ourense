@@ -9,7 +9,7 @@ import java.util.List;
 
 /**
  *
- * @author pc
+ * @author grupo-4
  */
 public class ServiciosUsuarios {
 
@@ -45,11 +45,21 @@ public class ServiciosUsuarios {
     }
 
     public boolean eliminar(int id) {
-        return false;
+        if (this.dui.leerUno(id) == null) {
+            if (dui.eliminar(id)) {
+                return true;
+            } else {
+                System.out.println("Error. No se ha podido eliminar el usuario.");
+                return false;
+            }
+        } else {
+            System.out.println("El usuario que intenta eliminar no existe.");
+            return false;
+        }
+
     }
 
     public Usuario leerUno(int id) {
-
         return dui.leerUno(id);
     }
 
@@ -62,7 +72,6 @@ public class ServiciosUsuarios {
     }
 
     public List<Usuario> leerTodos() {
-
         return dui.leerTodos();
     }
 }
