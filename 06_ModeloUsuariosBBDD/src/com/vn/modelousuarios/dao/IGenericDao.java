@@ -3,7 +3,7 @@ package com.vn.modelousuarios.dao;
 
 import java.util.List;
 
-/** 
+/**  Interfaz generica con metodo CRUD
  *
  * @author grupo 4
  */

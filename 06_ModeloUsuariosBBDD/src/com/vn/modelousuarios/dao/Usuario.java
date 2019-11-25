@@ -5,8 +5,9 @@
  */
 package com.vn.modelousuarios.dao;
 
-/**
- *
+/**Clase POJO para modelar usuario
+ * Con constructor y getter y setter
+ * 
  * @author grupo-4
  */
 public class Usuario {
