@@ -19,11 +19,11 @@ public interface IDaoUsuario extends IGenericDao<Usuario>  {
 
     public Usuario leerUno(String cadena);
 
-    public Usuario crearNuevo(Usuario nuevo);
+    public boolean crearNuevo(Usuario nuevo);
     
-    public Usuario actualizar(int index, Usuario actualizado);
+    public boolean actualizar(int index, Usuario actualizado);
     
-    public Usuario actualizar(String cadena, Usuario actualizado);
+    public boolean actualizar(String cadena, Usuario actualizado);
     
     public boolean eliminar(int index);
    
