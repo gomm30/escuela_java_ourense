@@ -23,6 +23,10 @@ D-> Eliminar por Id (o email)
 
 ServiciosUsuarios (puede o no implementar IGenericDao<T>):
 + validarDatos(){}
+	* Nombre e email de más de 1 letra, menos de lo permitido en bbdd
+	* Edad: Recibir un String, convertir en número y comprobar que > 12 años.
+	* Email que realmente sea un email y Nombre también (usar reg exp).
+	* Password mínimo 4 caracteres.
 + Usuario crear(String email, String password, String nombre, int edad){}
 + Usuario modificar(int Id, String email, String password, String nombre, int edad){}
 + Usuario modificar(Usuario usuDatosNuevos){ /*Invocar al anterior*/ }
