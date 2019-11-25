@@ -11,6 +11,8 @@ public interface IGenericDao<T> {
     
     List<T> leerTodos();
     
+    List<T> leerTodos(String cadena);
+    
     T leerUno(int index);
     
     T leerUno(String cadena);

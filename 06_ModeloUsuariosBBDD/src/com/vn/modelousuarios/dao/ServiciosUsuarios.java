@@ -16,9 +16,9 @@ public class ServiciosUsuarios {
     private DaoUsuarioImp dui;
 
     public ServiciosUsuarios() {
-        this.dui= new DaoUsuarioImp();
+        this.dui = new DaoUsuarioImp();
     }
-    
+
     public void validarDatos() {
     }
 
@@ -44,16 +44,16 @@ public class ServiciosUsuarios {
     }
 
     public Usuario leerUno(String email) {
-        
+
         return dui.leerUno(email);
     }
 
     public List<Usuario> leerPorNombre(String nombre) {
-        return null;
+        return dui.leerTodos(nombre);
     }
 
     public List<Usuario> leerTodos() {
-        
+
         return dui.leerTodos();
     }
 }
