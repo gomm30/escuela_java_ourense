@@ -13,6 +13,12 @@ import java.util.List;
  */
 public class ServiciosUsuarios {
 
+    private DaoUsuarioImp dui;
+
+    public ServiciosUsuarios() {
+        this.dui= new DaoUsuarioImp();
+    }
+    
     public void validarDatos() {
     }
 
@@ -33,11 +39,13 @@ public class ServiciosUsuarios {
     }
 
     public Usuario leerUno(int id) {
-        return null;
+
+        return dui.leerUno(id);
     }
 
     public Usuario leerUno(String email) {
-        return null;
+        
+        return dui.leerUno(email);
     }
 
     public List<Usuario> leerPorNombre(String nombre) {
