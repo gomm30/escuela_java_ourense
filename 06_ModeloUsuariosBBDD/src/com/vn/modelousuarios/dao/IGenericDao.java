@@ -17,13 +17,10 @@ public interface IGenericDao<T> {
     
     T leerUno(String cadena);
     
-    boolean crearNuevo(T nuevo);
+    T crearNuevo(T nuevo);
     
-    boolean actualizar(int index, T actualizado);
-    
-    boolean actualizar(String cadena, T actualizado);
+    T actualizar(T actualizado);
     
     boolean eliminar(int index);
    
-    boolean eliminar(String cadena);
 }

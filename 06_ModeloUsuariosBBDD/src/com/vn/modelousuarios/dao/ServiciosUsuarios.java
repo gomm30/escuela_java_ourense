@@ -26,22 +26,24 @@ public class ServiciosUsuarios {
      * @return
      */
     public Usuario crear(String email, String password, String nombre, String edad) {
+
         Usuario usuarioValido = crearUsuarioValido(email, password, nombre, edad);
+
         if (usuarioValido != null) {
             if (this.dui.leerUno(email) == null) {
-                if (this.dui.crearNuevo(usuarioValido)) {
-                    return this.dui.leerUno(email);
+                Usuario usuarioCreado = this.dui.crearNuevo(usuarioValido);
+                if (null != usuarioCreado) {
+                    return usuarioCreado;
                 } else {
                     System.out.println("Error al intentar crear el usuario.");
-                    return null;
                 }
             } else {
                 System.out.println("Ya existe un usuario en la bbdd con este email.");
-                return null;
             }
         } else {
-            return null;
+            System.out.println("Error al intentar validar dos datos dados.");
         }
+        return null;
     }
 
     /**
@@ -55,24 +57,24 @@ public class ServiciosUsuarios {
      * @return
      */
     public Usuario modificar(int id, String email, String password, String nombre, String edad) {
+        
         Usuario usuarioValido = crearUsuarioValido(email, password, nombre, edad);
-       
+        
         if (usuarioValido != null) {
-            if (this.dui.leerUno(email) != null) {
-                if (dui.actualizar(email, usuarioValido)) {
-                    usuarioValido.setId(id);
+            if (null != this.dui.leerUno(id) ) {
+                usuarioValido.setId(id);
+                if (null != dui.actualizar(usuarioValido)) {
                     return usuarioValido;
                 } else {
                     System.out.println("No se ha podido actualizar el usuario.");
-                    return null;
                 }
             } else {
                 System.out.println("El usuario que intenta modificar no existe.");
-                return null;
             }
         } else {
-            return null;
+            System.out.println("Error al intentar validar dos datos dados.");
         }
+        return null;
     }
 
     /**
@@ -82,7 +84,9 @@ public class ServiciosUsuarios {
      * @return
      */
     public Usuario modificar(Usuario usuDatosNuevos) {
+        
         String edad = String.valueOf(usuDatosNuevos.getAge());
+        
         return this.modificar(usuDatosNuevos.getId(),
                 usuDatosNuevos.getEmail(),
                 usuDatosNuevos.getPassword(),
@@ -97,17 +101,16 @@ public class ServiciosUsuarios {
      * @return
      */
     public boolean eliminar(int id) {
-        if (this.dui.leerUno(id) == null) {
+        if (null != this.dui.leerUno(id) ) {
             if (dui.eliminar(id)) {
                 return true;
             } else {
                 System.out.println("Error. No se ha podido eliminar el usuario.");
-                return false;
             }
         } else {
             System.out.println("El usuario que intenta eliminar no existe.");
-            return false;
         }
+        return false;
     }
 
     /**
