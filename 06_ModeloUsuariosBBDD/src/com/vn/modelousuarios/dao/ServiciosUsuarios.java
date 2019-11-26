@@ -1,10 +1,10 @@
-
 package com.vn.modelousuarios.dao;
 
 import java.util.List;
 
-/** Metodos para la verificacion de datos e
- * interactua con la base de datos db_usuarios
+/**
+ * Metodos para la verificacion de datos e interactua con la base de datos
+ * db_usuarios
  *
  * @author grupo-4
  */
@@ -21,11 +21,12 @@ public class ServiciosUsuarios {
 
     /**
      * Metodo de creacion de un usuario
+     *
      * @param email
      * @param password
      * @param nombre
      * @param edad
-     * @return 
+     * @return
      */
     public Usuario crear(String email, String password, String nombre, int edad) {
         if (this.dui.leerUno(email) == null) {
@@ -40,15 +41,17 @@ public class ServiciosUsuarios {
             return null;
         }
     }
-/**
- * Metodo para modificar los parametros de un usuario
- * @param id
- * @param email
- * @param password
- * @param nombre
- * @param edad
- * @return 
- */
+
+    /**
+     * Metodo para modificar los parametros de un usuario
+     *
+     * @param id
+     * @param email
+     * @param password
+     * @param nombre
+     * @param edad
+     * @return
+     */
     public Usuario modificar(int id, String email, String password, String nombre, int edad) {
         if (this.dui.leerUno(email) != null) {
             Usuario user = new Usuario(email, password, nombre, edad);
@@ -67,8 +70,9 @@ public class ServiciosUsuarios {
 
     /**
      * Modificar los datos de un usuario
+     *
      * @param usuDatosNuevos
-     * @return 
+     * @return
      */
     public Usuario modificar(Usuario usuDatosNuevos) {
         return this.modificar(usuDatosNuevos.getId(),
@@ -80,8 +84,9 @@ public class ServiciosUsuarios {
 
     /**
      * Eliminacion de un usuario por Id
+     *
      * @param id
-     * @return 
+     * @return
      */
     public boolean eliminar(int id) {
         if (this.dui.leerUno(id) == null) {
@@ -100,8 +105,9 @@ public class ServiciosUsuarios {
 
     /**
      * Metodo para leer un usuario por su Id
+     *
      * @param id
-     * @return 
+     * @return
      */
     public Usuario leerUno(int id) {
         return dui.leerUno(id);
@@ -109,8 +115,9 @@ public class ServiciosUsuarios {
 
     /**
      * Metodo para leer un usuario por su Email
+     *
      * @param email
-     * @return 
+     * @return
      */
     public Usuario leerUno(String email) {
         return dui.leerUno(email);
@@ -118,16 +125,19 @@ public class ServiciosUsuarios {
 
     /**
      * Metodo para leer por nombre los usuarios
+     *
      * @param nombre
-     * @return 
+     * @return
      */
     public List<Usuario> leerPorNombre(String nombre) {
         return dui.leerTodos(nombre);
     }
-/**
- * Metodo para leer todos los usuarios
- * @return 
- */
+
+    /**
+     * Metodo para leer todos los usuarios
+     *
+     * @return
+     */
     public List<Usuario> leerTodos() {
         return dui.leerTodos();
     }
