@@ -11,7 +11,7 @@ CREATE TABLE usuario(
 	nombre VARCHAR(50) NOT NULL,
 	age INTEGER NOT NULL,
 	CONSTRAINT primary_key PRIMARY KEY(id),
-	CONSTRAINT unique_email PRIMARY KEY(email),
+	CONSTRAINT unique_email UNIQUE(email)
 )
 
 DAO Usuarios implements IGenericDao<T>: Recibe y envía objetos

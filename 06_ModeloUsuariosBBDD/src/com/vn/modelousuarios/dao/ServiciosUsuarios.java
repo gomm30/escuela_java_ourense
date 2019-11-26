@@ -1,6 +1,8 @@
 package com.vn.modelousuarios.dao;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Metodos para la verificacion de datos e interactua con la base de datos
@@ -57,11 +59,11 @@ public class ServiciosUsuarios {
      * @return
      */
     public Usuario modificar(int id, String email, String password, String nombre, String edad) {
-        
+
         Usuario usuarioValido = crearUsuarioValido(email, password, nombre, edad);
-        
+
         if (usuarioValido != null) {
-            if (null != this.dui.leerUno(id) ) {
+            if (null != this.dui.leerUno(id)) {
                 usuarioValido.setId(id);
                 if (null != dui.actualizar(usuarioValido)) {
                     return usuarioValido;
@@ -84,9 +86,9 @@ public class ServiciosUsuarios {
      * @return
      */
     public Usuario modificar(Usuario usuDatosNuevos) {
-        
+
         String edad = String.valueOf(usuDatosNuevos.getAge());
-        
+
         return this.modificar(usuDatosNuevos.getId(),
                 usuDatosNuevos.getEmail(),
                 usuDatosNuevos.getPassword(),
@@ -101,7 +103,7 @@ public class ServiciosUsuarios {
      * @return
      */
     public boolean eliminar(int id) {
-        if (null != this.dui.leerUno(id) ) {
+        if (null != this.dui.leerUno(id)) {
             if (dui.eliminar(id)) {
                 return true;
             } else {
@@ -152,6 +154,16 @@ public class ServiciosUsuarios {
         return dui.leerTodos();
     }
 
+    /**
+     * Método para validar datos y generar usuarios válidos.
+     *
+     *
+     * @param email del usuario válido
+     * @param password del usuario con mínimo 4 caracteres
+     * @param nombre del usuario con mínimo 1 letra
+     * @param edad del usuario mayor de 12 años
+     * @return Usuario válido or null si surge algún problema
+     */
     public Usuario crearUsuarioValido(String email, String password, String nombre, String edad) {
 
         if (email != null
@@ -162,24 +174,32 @@ public class ServiciosUsuarios {
                     && nombre.length() > 1
                     && password.length() >= 4
                     && !"".equals(edad)) {
-                try {
-                    int iEdad = Integer.parseInt(edad);
-                    if (iEdad > 12) {
-                        Usuario usuario = new Usuario(-1, email, password, nombre, iEdad);
-                        return usuario;
-                    } else {
+                String regExp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+                Pattern pattern = Pattern.compile(regExp);
+                Matcher matcher = pattern.matcher(email);
+                if (matcher.find()) {
+                    try {
+                        int iEdad = Integer.parseInt(edad);
+                        if (iEdad > 12) {
+                            Usuario usuario = new Usuario(-1, email, password, nombre, iEdad);
+                            return usuario;
+                        } else {
+                            return null;
+                        }
+                    } catch (Exception e) {
+                        System.out.println("La edad no puede ser convertida a int: " + edad);
                         return null;
                     }
-                } catch (Exception e) {
-                    System.out.println("La edad no se puede parsear a int: " + edad);
+                } else {
+                    System.out.println("El email introducido no es válido.");
                     return null;
                 }
             } else {
-                System.out.println("Hay un campo que no cumple la longitud");
+                System.out.println("Uno de los campos no tiene la longitud mínima requerida.");
                 return null;
             }
         } else {
-            System.out.println("No admite NULOS");
+            System.out.println("No admiten valores nulos en los datos del usuario.");
             return null;
         }
     }

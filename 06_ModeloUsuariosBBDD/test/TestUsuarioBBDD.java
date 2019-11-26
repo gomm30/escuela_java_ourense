@@ -112,18 +112,15 @@ public class TestUsuarioBBDD {
     public void modificacionesInvalidasDeUsuarios() {
         Usuario u1 = srvUsu.crear("a@a.a", "1234", "Nom 1", "20");
         Usuario u2 = srvUsu.crear("a@a.a2", "1234", "Nom 2", "30");
-        Usuario u3 = srvUsu.crear("a@ee.a2", "e1234", "Nom 3", "40");
 
         srvUsu.modificar(u1.getId(), u1.getEmail(), u1.getPassword(), u1.getNombre(), "-a");
         assertEquals(20, srvUsu.leerUno("a@a.a").getAge());
-        srvUsu.modificar(u2.getId(), "", "", "", "");
-        assertNull(srvUsu.leerUno("psd@dd.ee"));
-        srvUsu.modificar(u3.getId(), null, null, null, null);
-        assertNull(srvUsu.leerUno("psd@dd.ee"));
+        assertNull(srvUsu.modificar(u2.getId(), "aee.a2", "1234", "Nom 2", "30"));
+        assertNull(srvUsu.modificar(u2.getId(), "", "", "", ""));
+        assertNull(srvUsu.modificar(u2.getId(), null, null, null, null));
 
         srvUsu.eliminar(u1.getId());
         srvUsu.eliminar(u2.getId());
-        srvUsu.eliminar(u3.getId());
     }
 
     @Test
