@@ -7,6 +7,7 @@
 import com.vn.modelousuarios.dao.ServiciosUsuarios;
 import com.vn.modelousuarios.dao.Usuario;
 import java.util.ArrayList;
+import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -157,6 +158,26 @@ public class TestUsuarioBBDD {
         assertNull(srvUsu.leerUno(u2.getId()));
         assertNull(srvUsu.leerUno("a@ee.a2"));
         assertTrue(b1 && b2 && b3);
+    }
+
+    @Test
+    public void listarTodos() {
+        // TODO: Acabarlo
+        List<Usuario> listaCreados = srvUsu.leerTodos();
+
+        listaCreados.add(srvUsu.crear("a@a.a", "1234", "Nom 1", "20"));
+        listaCreados.add(srvUsu.crear("a@a.a2", "1234", "Nom 2", "30"));
+        listaCreados.add(srvUsu.crear("a@ee.a2", "e1234", "Nom 3", "40"));
+
+        List<Usuario> listaTotal = srvUsu.leerTodos();
+
+        for (Usuario usuario1 : listaCreados) {
+            if (usuario1 != null && listaTotal.contains(usuario1)) {
+                srvUsu.eliminar(usuario1.getId());
+            } else {
+                fail("No se ha añadido o no se ha encontrado en listaTotal.");
+            }
+        }
     }
 
 }

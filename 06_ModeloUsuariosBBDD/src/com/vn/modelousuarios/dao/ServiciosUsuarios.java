@@ -1,6 +1,9 @@
 package com.vn.modelousuarios.dao;
 
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -10,12 +13,25 @@ import java.util.regex.Pattern;
  *
  * @author grupo-4
  */
-public class ServiciosUsuarios {
+public class ServiciosUsuarios implements ChivatoServicios {
 
     private DaoUsuarioImp dui;
+    private ChivatoServicios chivato;
 
     public ServiciosUsuarios() {
-        this.dui = new DaoUsuarioImp();
+        try {
+            this.dui = new DaoUsuarioImp();
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiciosUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            notificarError("ServiciosUsuarios(). " + ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ServiciosUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            notificarError("ServiciosUsuarios(). " + ex.getMessage());
+        }
+    }
+
+    public void setChivato(ChivatoServicios chivato) {
+        this.chivato = chivato;
     }
 
     /**
@@ -32,18 +48,23 @@ public class ServiciosUsuarios {
         Usuario usuarioValido = crearUsuarioValido(email, password, nombre, edad);
 
         if (usuarioValido != null) {
-            if (this.dui.leerUno(email) == null) {
-                Usuario usuarioCreado = this.dui.crearNuevo(usuarioValido);
-                if (null != usuarioCreado) {
-                    return usuarioCreado;
+            try {
+                if (this.dui.leerUno(email) == null) {
+                    Usuario usuarioCreado = this.dui.crearNuevo(usuarioValido);
+                    if (null != usuarioCreado) {
+                        return usuarioCreado;
+                    } else {
+                        notificarError("crear(). " + "Error al intentar crear el usuario.");
+                    }
                 } else {
-                    System.out.println("Error al intentar crear el usuario.");
+                    notificarError("crear(). " + "Ya existe un usuario en la bbdd con este email.");
                 }
-            } else {
-                System.out.println("Ya existe un usuario en la bbdd con este email.");
+            } catch (Exception ex) {
+                Logger.getLogger(ServiciosUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                notificarError("crear(). " + ex.getMessage());
             }
         } else {
-            System.out.println("Error al intentar validar dos datos dados.");
+            notificarError("crear(). " + "Error al intentar validar dos datos dados.");
         }
         return null;
     }
@@ -63,18 +84,23 @@ public class ServiciosUsuarios {
         Usuario usuarioValido = crearUsuarioValido(email, password, nombre, edad);
 
         if (usuarioValido != null) {
-            if (null != this.dui.leerUno(id)) {
-                usuarioValido.setId(id);
-                if (null != dui.actualizar(usuarioValido)) {
-                    return usuarioValido;
+            try {
+                if (null != this.dui.leerUno(id)) {
+                    usuarioValido.setId(id);
+                    if (null != dui.actualizar(usuarioValido)) {
+                        return usuarioValido;
+                    } else {
+                        notificarError("modificar(). " + "No se ha podido actualizar el usuario.");
+                    }
                 } else {
-                    System.out.println("No se ha podido actualizar el usuario.");
+                    notificarError("modificar(). " + "El usuario que intenta modificar no existe.");
                 }
-            } else {
-                System.out.println("El usuario que intenta modificar no existe.");
+            } catch (Exception ex) {
+                Logger.getLogger(ServiciosUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                notificarError("modificar(). " + ex.getMessage());
             }
         } else {
-            System.out.println("Error al intentar validar dos datos dados.");
+            notificarError("modificar(). " + "Error al intentar validar dos datos dados.");
         }
         return null;
     }
@@ -103,16 +129,22 @@ public class ServiciosUsuarios {
      * @return
      */
     public boolean eliminar(int id) {
-        if (null != this.dui.leerUno(id)) {
-            if (dui.eliminar(id)) {
-                return true;
+        try {
+            if (null != this.dui.leerUno(id)) {
+                if (dui.eliminar(id)) {
+                    return true;
+                } else {
+                    notificarError("eliminar(int id)." + "Error. No se ha podido eliminar el usuario.");
+                }
             } else {
-                System.out.println("Error. No se ha podido eliminar el usuario.");
+                notificarError("eliminar(int id). " + "El usuario que intenta eliminar no existe.");
             }
-        } else {
-            System.out.println("El usuario que intenta eliminar no existe.");
+            return false;
+        } catch (Exception ex) {
+            Logger.getLogger(ServiciosUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            notificarError(ex.getMessage());
+            return false;
         }
-        return false;
     }
 
     /**
@@ -122,7 +154,13 @@ public class ServiciosUsuarios {
      * @return
      */
     public Usuario leerUno(int id) {
-        return dui.leerUno(id);
+        try {
+            return dui.leerUno(id);
+        } catch (Exception ex) {
+            Logger.getLogger(ServiciosUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            notificarError("leerUno(int id). " + ex.getMessage());
+            return null;
+        }
     }
 
     /**
@@ -132,7 +170,13 @@ public class ServiciosUsuarios {
      * @return
      */
     public Usuario leerUno(String email) {
-        return dui.leerUno(email);
+        try {
+            return dui.leerUno(email);
+        } catch (Exception ex) {
+            Logger.getLogger(ServiciosUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            notificarError("leerUno(String email). " + ex.getMessage());
+            return null;
+        }
     }
 
     /**
@@ -142,7 +186,13 @@ public class ServiciosUsuarios {
      * @return
      */
     public List<Usuario> leerPorNombre(String nombre) {
-        return dui.leerTodos(nombre);
+        try {
+            return dui.leerTodos(nombre);
+        } catch (Exception ex) {
+            Logger.getLogger(ServiciosUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            notificarError("leerPorNombre(String nombre). " + ex.getMessage());
+            return null;
+        }
     }
 
     /**
@@ -151,7 +201,13 @@ public class ServiciosUsuarios {
      * @return
      */
     public List<Usuario> leerTodos() {
-        return dui.leerTodos();
+        try {
+            return dui.leerTodos();
+        } catch (Exception ex) {
+            Logger.getLogger(ServiciosUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+            notificarError("leerTodos(). " + ex.getMessage());
+            return null;
+        }
     }
 
     /**
@@ -186,21 +242,33 @@ public class ServiciosUsuarios {
                         } else {
                             return null;
                         }
+                    } catch (NumberFormatException nfe) {
+                        notificarError("crearUsuarioValido(). " + "La edad no puede ser convertida a int: " + edad + ". " + nfe.getMessage());
+                        return null;
                     } catch (Exception e) {
-                        System.out.println("La edad no puede ser convertida a int: " + edad);
+                        notificarError("crearUsuarioValido(). " + "Error al crear el objeto usuario: " + e.getMessage());
                         return null;
                     }
                 } else {
-                    System.out.println("El email introducido no es válido.");
+                    notificarError("crearUsuarioValido(). " + "El email introducido no es válido.");
                     return null;
                 }
             } else {
-                System.out.println("Uno de los campos no tiene la longitud mínima requerida.");
+                notificarError("crearUsuarioValido(). " + "Uno de los campos no tiene la longitud mínima requerida.");
                 return null;
             }
         } else {
-            System.out.println("No admiten valores nulos en los datos del usuario.");
+            notificarError("crearUsuarioValido(). " + "No admiten valores nulos en los datos del usuario.");
             return null;
         }
     }
+
+    @Override
+    public void notificarError(String mensajeError) {
+        System.out.println(">>ERROR ServicioUsuarios: " + mensajeError);
+        if (chivato != null) {
+            this.chivato.notificarError(mensajeError);
+        }
+    }
+
 }

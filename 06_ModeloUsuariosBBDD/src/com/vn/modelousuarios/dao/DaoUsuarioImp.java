@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Clase DAO para creación de CRUD con objetos Usuario.
@@ -22,13 +24,9 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
      * Constructor con creación del objeto conexión con la base de datos.
      *
      */
-    public DaoUsuarioImp() {
-        try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-            DriverManager.registerDriver(new org.apache.derby.jdbc.EmbeddedDriver());
-        } catch (Exception ex) {
-            System.out.println("Error. " + ex.getMessage());
-        }
+    public DaoUsuarioImp() throws SQLException, ClassNotFoundException {
+        Class.forName("org.apache.derby.jdbc.ClientDriver");
+        DriverManager.registerDriver(new org.apache.derby.jdbc.EmbeddedDriver());
     }
 
     /**
@@ -38,7 +36,7 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
      * @return Una lista con todos los usuarios guardados en la base de datos.
      */
     @Override
-    public ArrayList<Usuario> leerTodos() {
+    public ArrayList<Usuario> leerTodos() throws Exception {
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(DB, DB_USUARIO, DB_PASSWORD)) {
             String sqlQuery = "SELECT * FROM USUARIO";
@@ -53,10 +51,7 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
                 ));
             }
             return listaUsuarios;
-        } catch (SQLException ex) {
-            System.out.println("Error. " + ex.getMessage());
         }
-        return null;
     }
 
     /**
@@ -67,7 +62,7 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
      * @return Lista con todos los usuarios con un determinado nombre.
      */
     @Override
-    public ArrayList<Usuario> leerTodos(String nombre) {
+    public ArrayList<Usuario> leerTodos(String nombre) throws Exception {
         ArrayList<Usuario> listaUsuarios = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(DB, DB_USUARIO, DB_PASSWORD)) {
             String sqlQuery = "SELECT * FROM USUARIO WHERE TRIM(UPPER(nombre)) LIKE ?";
@@ -90,10 +85,7 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
                 ));
             }
             return listaUsuarios;
-        } catch (SQLException ex) {
-            System.out.println("Error. " + ex.getMessage());
         }
-        return null;
     }
 
     /**
@@ -104,7 +96,7 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
      * error.
      */
     @Override
-    public Usuario leerUno(int id) {
+    public Usuario leerUno(int id) throws Exception {
         try (Connection con = DriverManager.getConnection(DB, DB_USUARIO, DB_PASSWORD)) {
             String sqlQuery = "SELECT * FROM USUARIO WHERE id = ?";
             PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
@@ -118,8 +110,6 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
                         resultado.getInt(5)
                 );
             }
-        } catch (SQLException ex) {
-            System.out.println("Error. " + ex.getMessage());
         }
         return null;
     }
@@ -132,7 +122,7 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
      * error.
      */
     @Override
-    public Usuario leerUno(String email) {
+    public Usuario leerUno(String email) throws Exception {
         try (Connection con = DriverManager.getConnection(DB, DB_USUARIO, DB_PASSWORD)) {
             String sqlQuery = "SELECT * FROM USUARIO WHERE email = ?";
             PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
@@ -146,8 +136,6 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
                         resultado.getInt(5)
                 );
             }
-        } catch (SQLException ex) {
-            System.out.println("Error. " + ex.getMessage());
         }
         return null;
     }
@@ -160,7 +148,7 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
      * ha habido algún problema
      */
     @Override
-    public Usuario crearNuevo(Usuario usuario) {
+    public Usuario crearNuevo(Usuario usuario) throws Exception {
         try (Connection con = DriverManager.getConnection(DB, DB_USUARIO, DB_PASSWORD)) {
             String sqlQuery = "INSERT INTO USUARIO (email,password,nombre,age) VALUES (?,?,?,?)";
             PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
@@ -171,8 +159,6 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
             if (sentenciaSQL.executeUpdate() == 1) {
                 return this.leerUno(usuario.getEmail());
             }
-        } catch (SQLException ex) {
-            System.out.println("Error. " + ex.getMessage());
         }
         return null;
     }
@@ -186,7 +172,7 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
      * @return null si el usuario no existe o ha surgido algún problema.
      */
     @Override
-    public Usuario actualizar(Usuario usuarioActualizado) {
+    public Usuario actualizar(Usuario usuarioActualizado) throws Exception {
         try (Connection con = DriverManager.getConnection(DB, DB_USUARIO, DB_PASSWORD)) {
             String sqlQuery = "UPDATE USUARIO SET email = ?, password = ?, nombre = ?, age = ? WHERE id = ?";
             PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
@@ -198,8 +184,6 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
             if (sentenciaSQL.executeUpdate() == 1) {
                 return usuarioActualizado;
             }
-        } catch (SQLException ex) {
-            System.out.println("Error. " + ex.getMessage());
         }
         return null;
     }
@@ -212,15 +196,13 @@ public class DaoUsuarioImp implements IGenericDao<Usuario> {
      * existe o ha surgido algún problema.
      */
     @Override
-    public boolean eliminar(int id) {
+    public boolean eliminar(int id) throws Exception {
         try (Connection con = DriverManager.getConnection(DB, DB_USUARIO, DB_PASSWORD)) {
             String sqlQuery = " DELETE FROM USUARIO WHERE id = ?";
             PreparedStatement sentenciaSQL = con.prepareStatement(sqlQuery);
             sentenciaSQL.setInt(1, id);
             return (sentenciaSQL.executeUpdate() == 1) ? true : false;
-        } catch (SQLException ex) {
-            System.out.println("Error. " + ex.getMessage());
         }
-        return false;
     }
+
 }

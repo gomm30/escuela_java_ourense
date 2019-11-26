@@ -5,9 +5,9 @@
  */
 package com.vn.modelousuarios.dao;
 
-/**Clase POJO para modelar usuario
- * Con constructor y getter y setter
- * 
+/**
+ * Clase POJO para modelar usuario Con constructor y getter y setter
+ *
  * @author grupo-4
  */
 public class Usuario {
@@ -30,7 +30,7 @@ public class Usuario {
         this.age = age;
     }
 
-    public Usuario( String email, String password, String nombre, int age) {
+    public Usuario(String email, String password, String nombre, int age) {
         this.nombre = nombre;
         this.email = email;
         this.password = password;
@@ -90,7 +90,7 @@ public class Usuario {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
     /**
      * Get the value of password
      *
@@ -108,7 +108,7 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
-    
+
     /**
      * Get the value of age
      *
@@ -130,6 +130,21 @@ public class Usuario {
     @Override
     public String toString() {
         return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", email=" + email + ", password=" + password + ", age=" + age + '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (super.equals(obj)) {
+            return true;
+        } else {
+            if (obj == null) {
+                return false;
+            }
+            Usuario usu = (Usuario) obj;
+            return usu.getId() == this.getId()
+                    && (usu.getEmail() == null ? this.getEmail() == null
+                    : usu.getEmail().equals(this.getEmail()));
+        }
     }
 
 }
