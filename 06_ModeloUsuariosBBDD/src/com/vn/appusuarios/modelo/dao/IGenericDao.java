@@ -1,4 +1,4 @@
-package com.vn.modelousuarios.dao;
+package com.vn.appusuarios.modelo.dao;
 
 import java.util.List;
 

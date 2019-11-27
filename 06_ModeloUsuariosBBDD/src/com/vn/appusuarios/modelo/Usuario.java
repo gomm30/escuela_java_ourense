@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.vn.modelousuarios.dao;
+package com.vn.appusuarios.modelo;
 
 /**
  * Clase POJO para modelar usuario Con constructor y getter y setter

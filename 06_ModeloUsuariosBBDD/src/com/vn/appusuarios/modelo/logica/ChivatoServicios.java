@@ -1,5 +1,5 @@
 
-package com.vn.modelousuarios.dao;
+package com.vn.appusuarios.modelo.logica;
 
 /**
  *

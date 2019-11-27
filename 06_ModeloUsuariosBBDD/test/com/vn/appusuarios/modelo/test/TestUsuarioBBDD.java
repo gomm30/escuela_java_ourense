@@ -1,12 +1,13 @@
+package com.vn.appusuarios.modelo.test;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 
-import com.vn.modelousuarios.dao.ServiciosUsuarios;
-import com.vn.modelousuarios.dao.Usuario;
-import java.util.ArrayList;
+import com.vn.appusuarios.modelo.logica.ServiciosUsuarios;
+import com.vn.appusuarios.modelo.Usuario;
 import java.util.List;
 import org.junit.Test;
 import static org.junit.Assert.*;

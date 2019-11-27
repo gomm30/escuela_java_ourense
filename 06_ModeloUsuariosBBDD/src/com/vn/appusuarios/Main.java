@@ -1,5 +1,5 @@
 
-package com.vn.modelousuarios;
+package com.vn.appusuarios;
 
 /**
  *

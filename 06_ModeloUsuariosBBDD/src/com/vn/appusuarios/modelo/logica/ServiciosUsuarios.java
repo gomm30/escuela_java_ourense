@@ -1,5 +1,7 @@
-package com.vn.modelousuarios.dao;
+package com.vn.appusuarios.modelo.logica;
 
+import com.vn.appusuarios.modelo.dao.DaoUsuarioImp;
+import com.vn.appusuarios.modelo.Usuario;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;

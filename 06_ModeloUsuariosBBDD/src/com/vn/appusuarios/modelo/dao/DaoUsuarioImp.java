@@ -1,5 +1,6 @@
-package com.vn.modelousuarios.dao;
+package com.vn.appusuarios.modelo.dao;
 
+import com.vn.appusuarios.modelo.Usuario;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;

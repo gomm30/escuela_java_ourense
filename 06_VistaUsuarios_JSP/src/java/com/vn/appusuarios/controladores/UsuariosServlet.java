@@ -1,8 +1,8 @@
-package com.vn.controladores;
+package com.vn.appusuarios.controladores;
 
-import com.vn.modelousuarios.dao.ChivatoServicios;
-import com.vn.modelousuarios.dao.ServiciosUsuarios;
-import com.vn.modelousuarios.dao.Usuario;
+import com.vn.appusuarios.modelo.logica.ChivatoServicios;
+import com.vn.appusuarios.modelo.logica.ServiciosUsuarios;
+import com.vn.appusuarios.modelo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -47,6 +47,7 @@ public class UsuariosServlet extends HttpServlet {
             // Si usuario tiene id y no es null.
             if (usuario != null && usuario.getId() >= 0) {
                 // Redirigir a la vista que muestra el usuario registrado.
+                request.getSession().setAttribute("emailUsuario",email);
                 request.getRequestDispatcher("registrado.jsp")
                         .forward(request, response);
             } else {
