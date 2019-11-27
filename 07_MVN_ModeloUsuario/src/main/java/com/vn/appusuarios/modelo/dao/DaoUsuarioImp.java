@@ -17,6 +17,7 @@ import java.util.logging.Logger;
  */
 public class DaoUsuarioImp implements IGenericDao<Usuario> {
 
+	//private static final String DB = "jdbc:derby://localhost:1527/db_usuarios";
     private static final String DB = "jdbc:derby://localhost:1527/db_usuarios";
     private static final String DB_USUARIO = "root";
     private static final String DB_PASSWORD = "1234";
