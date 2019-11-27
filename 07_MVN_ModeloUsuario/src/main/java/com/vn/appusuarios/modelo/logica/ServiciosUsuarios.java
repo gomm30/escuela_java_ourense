@@ -1,6 +1,7 @@
 package com.vn.appusuarios.modelo.logica;
 
-import com.vn.appusuarios.modelo.dao.DaoUsuarioImp;
+//import com.vn.appusuarios.modelo.dao.DaoUsuarioImp;
+import com.vn.appusuarios.modelo.dao.DaoUsuarioImpMYSQL;
 import com.vn.appusuarios.modelo.Usuario;
 import java.sql.SQLException;
 import java.util.List;
@@ -17,19 +18,23 @@ import java.util.regex.Pattern;
  */
 public class ServiciosUsuarios implements ChivatoServicios {
 
-    private DaoUsuarioImp dui;
+    //private DaoUsuarioImp dui;
+    private DaoUsuarioImpMYSQL dui;
     private ChivatoServicios chivato;
 
     public ServiciosUsuarios() {
         try {
-            this.dui = new DaoUsuarioImp();
+			this.dui = new DaoUsuarioImpMYSQL();
         } catch (SQLException ex) {
             Logger.getLogger(ServiciosUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             notificarError("ServiciosUsuarios(). " + ex.getMessage());
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ServiciosUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             notificarError("ServiciosUsuarios(). " + ex.getMessage());
-        }
+        }catch (InstantiationException | IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     public void setChivato(ChivatoServicios chivato) {

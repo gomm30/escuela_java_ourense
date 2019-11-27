@@ -1,0 +1,18 @@
+@Object00
+
+#Listar contenedores levantados
+
+sudo docker ps
+
+
+
+#El comando run ejecuta, pero si no tiene el contenedor
+descargado lo descarga del repositorio:
+# -d no muestra salida por consola
+# -p configuramos los puertos Salida:Interno
+# -e establece una variable de entorno
+# Puerto por defecto 3306
+# Establecer la contraseña de root MYSQL_ROOT_PASSWORD=1234
+# Al final indicamos el contenedor:versión
+
+sudo docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=1234 mysql:8.0.16
