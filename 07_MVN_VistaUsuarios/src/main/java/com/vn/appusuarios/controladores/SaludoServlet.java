@@ -20,17 +20,26 @@ public class SaludoServlet extends HttpServlet {
 		resp.getWriter().println("<body>");
 		resp.getWriter().println(nombre);
 		Cookie[] todasCookies = req.getCookies();
-		Cookie nombreCookie;
-		if (todasCookies.length == 0) {
+		Cookie nombreCookie = null;
+		boolean hayCookie = false;
+		for(Cookie co:todasCookies) {
+			if(co.getName().equals(nombreCookie)) {
+				hayCookie = true;
+				nombreCookie = co;
+			}
+		}
+		if (!hayCookie) {
 			nombreCookie = new Cookie("nombre_cookie", "Valor de la cookie " + nombre);
+			//nombreCookie.setMaxAge(3600);
 		} else {
 			nombreCookie = todasCookies[0];
 		}
+		resp.addCookie(nombreCookie);
 		System.out.println("Cookie desde navegador: " + todasCookies[0].getValue());
 		if (todasCookies.length > 0) {
 			System.out.println("Cookie desde navegador: " + todasCookies[1].getValue());
 		}
-		resp.addCookie(nombreCookie);
+		
 		resp.getWriter().println("<div id='div'></div>");
 		resp.getWriter().println("<script>document.getElementById('div').innerHTML = document.cookie;");
 		resp.getWriter().println("document.cookie ='nombre_cookie=\"Modificada en JS:\"';");
