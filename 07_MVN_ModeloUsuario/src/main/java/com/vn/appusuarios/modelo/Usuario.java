@@ -5,12 +5,15 @@
  */
 package com.vn.appusuarios.modelo;
 
+import java.io.Serializable;
+
 /**
- * Clase POJO para modelar usuario Con constructor y getter y setter
+ * Clase POJO para modelar usuario con constructor y getter y setter
+ * Ahora el usuario puede ser un BEAN por implementar Serializable
  *
  * @author grupo-4
  */
-public class Usuario {
+public class Usuario implements Serializable {
 
     private int id;
 

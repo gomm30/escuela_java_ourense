@@ -4,6 +4,7 @@ package com.vn.appusuarios.modelo.logica;
 import com.vn.appusuarios.modelo.dao.DaoUsuarioImpMYSQL;
 import com.vn.appusuarios.modelo.Usuario;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -192,7 +193,7 @@ public class ServiciosUsuarios implements ChivatoServicios {
      * @param nombre
      * @return
      */
-    public List<Usuario> leerPorNombre(String nombre) {
+    public ArrayList<Usuario> leerPorNombre(String nombre) {
         try {
             return dui.leerTodos(nombre);
         } catch (Exception ex) {
@@ -207,7 +208,7 @@ public class ServiciosUsuarios implements ChivatoServicios {
      *
      * @return
      */
-    public List<Usuario> leerTodos() {
+    public ArrayList<Usuario> leerTodos() {
         try {
             return dui.leerTodos();
         } catch (Exception ex) {

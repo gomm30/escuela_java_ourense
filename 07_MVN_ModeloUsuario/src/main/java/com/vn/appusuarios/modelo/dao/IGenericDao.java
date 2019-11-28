@@ -1,5 +1,6 @@
 package com.vn.appusuarios.modelo.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,9 +10,9 @@ import java.util.List;
  */
 public interface IGenericDao<T> {
 
-    List<T> leerTodos() throws Exception;
+    ArrayList<T> leerTodos() throws Exception;
 
-    List<T> leerTodos(String cadena) throws Exception;
+    ArrayList<T> leerTodos(String cadena) throws Exception;
 
     T leerUno(int index) throws Exception;
 
