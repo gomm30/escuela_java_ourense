@@ -47,3 +47,4 @@ nbdist/
 /.metadata/
 /07_MVN_ModeloUsuario/bin/target/
 /derby_bbdd
+/Servers
