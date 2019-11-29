@@ -1,0 +1,16 @@
+<div class="div-marco">
+    <h3>Nueva cuenta:</h3>
+    <table>
+        <tr>
+            <th>IBAN</th>
+            <td><input [(ngModel)]="cuenta.iban" type="text" placeholder="IBAN"></td>
+        </tr>
+        <tr>
+            <th>DNI</th>
+            <td><input [(ngModel)]="cuenta.dni" type="text" placeholder="DNI"></td>
+        </tr>
+    </table>
+    <h4>Cuenta: {{cuenta.iban}} / {{cuenta.dni}}</h4>
+    <input type="button" value="Crear cuenta" (click)="crearCuenta()">
+    <p *ngIf="recibido==true" style="color: green;">Algo recibido</p>
+</div>
