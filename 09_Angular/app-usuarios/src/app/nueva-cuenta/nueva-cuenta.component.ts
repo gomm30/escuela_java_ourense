@@ -24,13 +24,22 @@ export class NuevaCuentaComponent implements OnInit {
 
   crearCuenta():void{
     console.log(this.cuenta.toString());
-    let observador:Observable<CuentaBanc>;
+    let observador: Observable<CuentaBanc>;
     observador = this.srvCuentasRest.add(this.cuenta);
 
     observador.subscribe((objNoSexual)=>{
       console.log(objNoSexual.toString());
       this.recibido = true;
     });
+  }
+
+  cambiarClase(): void {
+    let div = document.getElementsByClassName('div-marco')[0];
+    if ((div.classList).contains('div-marco-focus')) {
+      div.classList.remove('div-marco-focus');
+    } else {
+      div.classList.add('div-marco-focus');
+    }
   }
 
 }

@@ -1,10 +1,11 @@
 export class CuentaBanc{
     constructor(
-        private id:number,
-        private dni:string,
-        private iban:string){}
+        public id: number,
+        public dni: string,
+        public iban: string) {}
 
-        public toString():String{
+        public toString(): string {
             return `Cuenta: [Id: ${this.id}, DNI: ${this.dni}, IBAN: ${this.iban}]`;
         }
+
 }
