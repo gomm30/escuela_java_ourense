@@ -5,7 +5,7 @@ export class CuentaBanc{
         public iban: string) {}
 
         public toString(): string {
-            return `Cuenta: [Id: ${this.id}, DNI: ${this.dni}, IBAN: ${this.iban}]`;
+            return `Cuenta: ${this.id}, DNI: ${this.dni}, IBAN: ${this.iban}`;
         }
 
 }

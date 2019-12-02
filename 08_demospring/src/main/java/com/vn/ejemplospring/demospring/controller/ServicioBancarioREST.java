@@ -32,6 +32,7 @@ public class ServicioBancarioREST {
 	// Sólo el método POST
 	// @PostMapping
 	public CuentaBanc crearCuentaAingenuo(@RequestBody CuentaBanc cuenta) {
+		System.out.println(cuenta.toString());
 		System.out.println(">>>> CuentaBanc recibida: " + cuenta.toString());
 		return repo.save(cuenta);
 	}

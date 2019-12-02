@@ -17,10 +17,36 @@ export class CuentasRestService {
     })
   }
 
+  // Crear un observador.
+  alCambiar: any;
+
   constructor(private httpCli: HttpClient) { }
 
-  public add(nuevaCuenta: CuentaBanc):Observable<CuentaBanc> {
-    return this.httpCli.post<CuentaBanc>(this.urlApiRest, CuentaBanc, this.httpOptions);
+  // nuevaCuenta va sin ID
+  public add(nuevaCuenta: CuentaBanc, lambda: any): Observable<CuentaBanc> {
+    let observable: Observable<CuentaBanc> = this.httpCli.post<CuentaBanc>(this.urlApiRest, nuevaCuenta, this.httpOptions);
+    observable.subscribe((datos) => { // Datos de la cuenta con el ID
+      this.alCambiar(datos); // Probablemente actualiza la lista
+      lambda(datos); // Invoca a la suscripción del componente nuevo
+    });
+    return observable;
+  }
+
+  public modificar(id:number, nuevaCuenta: CuentaBanc, lambda: any): Observable<CuentaBanc> {
+    let observable: Observable<CuentaBanc> = this.httpCli.put<CuentaBanc>(this.urlApiRest + "/" + id, nuevaCuenta, this.httpOptions);
+    observable.subscribe((datos) => { // Datos de la cuenta con el ID
+      this.alCambiar(datos); // Probablemente actualiza la lista
+      lambda(datos); // Invoca a la suscripción del componente nuevo
+    });
+    return observable;
+  }
+
+  public traerTodos(): Observable<CuentaBanc[]> {
+    return this.httpCli.get<CuentaBanc[]>(this.urlApiRest);
+  }
+
+  public eliminarCuenta(id: number) {
+    return this.httpCli.delete(this.urlApiRest + '/' + id);
   }
 
 }   

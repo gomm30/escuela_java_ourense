@@ -10,26 +10,26 @@ import { Observable } from 'rxjs';
 })
 export class NuevaCuentaComponent implements OnInit {
 
-  cuenta:CuentaBanc;
-  recibido:boolean;
+  cuenta: CuentaBanc;
+  recibido: boolean;
 
   // Angular detecta que el componente necesita el servicio, así que le inyecta 
   // el único que ha creado.
   // Como el Autowired de Spring es la inyección de dependencias.
-  constructor(private srvCuentasRest:CuentasRestService) { }
+  constructor(private srvCuentasRest: CuentasRestService) { }
 
   ngOnInit() {
-    this.cuenta = new CuentaBanc(0,"","");
+    this.cuenta = new CuentaBanc(0, "", "");
   }
 
-  crearCuenta():void{
+  crearCuenta(): void {
     console.log(this.cuenta.toString());
     let observador: Observable<CuentaBanc>;
-    observador = this.srvCuentasRest.add(this.cuenta);
-
-    observador.subscribe((objNoSexual)=>{
+    observador = this.srvCuentasRest.add(this.cuenta, (objNoSexual) => {
       console.log(objNoSexual.toString());
       this.recibido = true;
+      this.cuenta.iban = "";
+      this.cuenta.dni = "";
     });
   }
 

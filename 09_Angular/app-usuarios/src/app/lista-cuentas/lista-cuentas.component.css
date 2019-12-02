@@ -1,0 +1,70 @@
+.lista-cuentas-container{
+    width: 100%;
+}
+h2{
+    text-align: center;
+}
+.tabla{
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+.tabla thead{
+    background-color: #0e0e0e;
+    color: white;
+}
+.tabla tr:hover{
+    background-color: lightgray;
+}
+.tabla th, .tabla td{
+    padding: .5em;
+}
+.tabla td{
+    border-bottom: 2px #0e0e0e solid;
+}
+
+.tabla .btn{
+    background-color: white;
+    padding: .2em .6em;
+    border-radius: .2em;
+    font-weight: bold;
+}
+
+.tabla .btn:hover{
+    cursor: pointer;
+    color: white;
+}
+
+.tabla .btn-eliminar{
+    color: red;
+    border: 1px red solid;
+    margin-right: .5em;
+}
+
+.tabla .btn-eliminar:hover{
+    background-color: red;
+}
+
+.tabla .btn-actualizar{
+    color: blue;
+    border: 1px blue solid;
+    margin-right: .5em;
+}
+
+.tabla .btn-actualizar:hover{
+    background-color: blue;
+}
+
+.tabla-mod{
+    width: 100%;
+}
+
+.tabla-mod input{
+    border: none;
+    border-bottom: 2px lightgrey solid;
+    width: 100%;
+}
+
+.tabla-mod input:focus{
+    border-bottom-color: #0e0e0e;
+}

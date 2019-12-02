@@ -2,10 +2,10 @@
     <h3>Nueva cuenta</h3>
     <table>
         <tr>
-            <td><input [(ngModel)]="cuenta.iban" type="text" placeholder="IBAN" (focus)="cambiarClase()" (blur)="cambiarClase()"></td>
+            <td><input [(ngModel)]="cuenta.iban" id="cn_iban" type="text" placeholder="IBAN" (focus)="cambiarClase()" (blur)="cambiarClase()"></td>
         </tr>
         <tr>
-            <td><input [(ngModel)]="cuenta.dni" type="text" placeholder="DNI" (focus)="cambiarClase()" (blur)="cambiarClase()"></td>
+            <td><input [(ngModel)]="cuenta.dni" id="cn_dni" type="text" placeholder="DNI" (focus)="cambiarClase()" (blur)="cambiarClase()"></td>
         </tr>
     </table>
     <h4>Cuenta: {{cuenta.iban}} | {{cuenta.dni}}</h4>

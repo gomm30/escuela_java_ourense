@@ -1,0 +1,31 @@
+<div class="lista-cuentas-container">
+    <h2>Listado de cuentas</h2>
+    <table class="tabla">
+        <thead>
+            <th>ID</th>
+            <th>IBAN</th>
+            <th>DNI</th>
+            <th>Controles</th>
+        </thead>
+        <tbody>
+            <!--El asterisco * es que es una directiva estructural (modif. el DOM)-->
+            <tr *ngFor="let cuenta of arrayCuentas" id="f_{{cuenta.id}}">
+                <td>{{ cuenta.id }}</td>
+                <td>{{ cuenta.iban }}</td>
+                <td>{{ cuenta.dni }}</td>
+                <td>
+                    <button class="btn btn-eliminar" (click)="eliminarCuenta(cuenta.id)">Elim</button>
+                    <button class="btn btn-actualizar" (click)="prepararModificar(cuenta)">Mod</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table *ngIf="cuentaEditar != null" class="tabla-mod">
+        <tr>
+        <td><input [(ngModel)]="cuentaEditar.id" type="number" readonly></td>
+        <td><input [(ngModel)]="cuentaEditar.iban" type="text"></td>
+        <td><input [(ngModel)]="cuentaEditar.dni" type="text"></td>
+        <td><input type="button" value="Modificar" (click)=" modificarCuenta(cuentaEditar.id, cuentaEditar )" ></td>
+    </tr>
+    </table>
+</div>
